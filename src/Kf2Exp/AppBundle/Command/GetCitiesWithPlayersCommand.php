@@ -23,7 +23,7 @@ class GetCitiesWithPlayersCommand extends ContainerAwareCommand{
 
     $sql = "SELECT      COUNT(p.steamId) as number_player, c.id, c.cityName, 
                         c.cityLat, c.cityLon
-            FROM        Player p, City c
+            FROM        Players p, Cities c
             WHERE       c.id      =   p.city_id
             AND         p.city_id <>  ''
             GROUP BY    c.cityName, c.cityLat, c.cityLon";
