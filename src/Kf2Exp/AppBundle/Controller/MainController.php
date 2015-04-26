@@ -51,7 +51,7 @@ class MainController extends Controller
     $response->setData($checkIfPlayerExistOnSteamResponse);
     $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
 
-    return new JsonResponse($checkIfPlayerExistOnSteamResponse);
+    return $response;
   }
 
   /**
