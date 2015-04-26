@@ -1,4 +1,4 @@
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (1, '59', 'Anchorage', '61.218056', '-149.900278'),
 (2, '60', 'Barrow', '71.290556', '-156.788611'),
 (3, '61', 'Bethel', '60.792222', '-161.755833'),
@@ -912,7 +912,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (911, '911', 'Norland', '25.9468', '-80.208699'),
 (912, '912', 'North Andrews Gardens', '26.1911', '-80.14457400000001'),
 (913, '913', 'North Fort Myers', '26.66729399999999', '-81.88008600000001');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (914, '914', 'North Lauderdale', '26.217305', '-80.225881'),
 (915, '915', 'North Miami', '25.890095', '-80.18671399999999'),
 (916, '916', 'North Miami Beach', '25.933149', '-80.16254600000001'),
@@ -1798,7 +1798,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (1796, '1970', 'Sutton', '42.150035', '-71.763288'),
 (1797, '1971', 'Swampscott', '42.470944', '-70.917556'),
 (1798, '1972', 'Swansea', '41.748162', '-71.189562');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (1799, '1973', 'Taunton', '41.900101', '-71.08976699999999'),
 (1800, '1974', 'Tewksbury', '42.610648', '-71.234225'),
 (1801, '1975', 'Townsend', '42.666772', '-71.70512600000001'),
@@ -2680,7 +2680,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (2677, '2605', 'Somers Point', '39.317616', '-74.594601'),
 (2678, '2606', 'Somerset', '40.52921', '-74.64004300000001'),
 (2679, '2607', 'Somerville', '40.57427', '-74.60988');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (2680, '2608', 'South Orange', '40.748928', '-74.26099000000001'),
 (2681, '2609', 'South Plainfield', '40.57927', '-74.41154'),
 (2682, '2610', 'South River', '40.446495', '-74.385983'),
@@ -3559,7 +3559,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (3555, '3554', 'Sevierville', '35.868146', '-83.561835'),
 (3556, '3555', 'Shelbyville', '35.483406', '-86.460272'),
 (3557, '3556', 'Smyrna', '35.982841', '-86.518604');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (3558, '3557', 'Soddy-daisy', '35.235902', '-85.19079000000001'),
 (3559, '3558', 'Spring Hill', '35.751179', '-86.930002'),
 (3560, '3559', 'Springfield', '36.509212', '-86.884998'),
@@ -4436,7 +4436,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (4431, '4641', 'Port Hawkesbury', '45.618175', '-61.358965'),
 (4432, '4753', 'Shelburne', '43.764358', '-65.324023'),
 (4433, '4773', 'Springhill', '45.64864799999999', '-64.05996500000001');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (4434, '4794', 'Sydney Mines', '46.242273', '-60.230613'),
 (4435, '4795', 'Sydney', '46.13679', '-60.194224'),
 (4436, '4821', 'Truro', '45.36577299999999', '-63.286941'),
@@ -5343,7 +5343,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (5337, '5471', 'Yeghvard', '40.321667', '44.481389'),
 (5338, '5477', 'Zar', '40.261111', '44.736111'),
 (5339, '5480', 'Zoravan', '40.356944', '44.523056');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (5340, '5200', 'Agarak', '41.010556', '44.4675'),
 (5341, '5208', 'Alaverdi', '41.091873', '44.659063'),
 (5342, '5225', 'Arevashogh', '40.861389', '44.272778'),
@@ -6288,7 +6288,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (6281, '6391', 'Habay', '49.73104099999999', '5.64443'),
 (6282, '6406', 'Herbeumont', '49.780231', '5.242033'),
 (6283, '6423', 'Hotton', '50.26728', '5.44568');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (6284, '6424', 'Houffalize', '50.130582', '5.791354000000001'),
 (6285, '6470', 'La Roche-en-ardenne', '50.181616', '5.575921'),
 (6286, '6474', 'Leglise', '49.800024', '5.537625'),
@@ -7207,7 +7207,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (7199, '8605', 'Presidente Olegario', '-18.415615', '-46.421489'),
 (7200, '8629', 'Raposos', '-19.966068', '-43.804319'),
 (7201, '8630', 'Raul Soares', '-20.102228', '-42.454677');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (7202, '8633', 'Recreio', '-21.52095', '-42.473432'),
 (7203, '8643', 'Resplendor', '-19.326185', '-41.256332'),
 (7204, '8654', 'Ribeirao Das Neves', '-19.765938', '-44.087022'),
@@ -8079,7 +8079,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (8070, '8269', 'Moji Das Cruzes', '-23.524754', '-46.187134'),
 (8071, '8270', 'Moji-mirim', '-22.43199', '-46.958156'),
 (8072, '8274', 'Mongagua', '-24.092421', '-46.62126700000001');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (8073, '8282', 'Monte Alto', '-21.264038', '-48.499962'),
 (8074, '8283', 'Monte Aprazivel', '-20.77395', '-49.71123500000001'),
 (8075, '8285', 'Monte Azul Paulista', '-23.440779', '-46.712525'),
@@ -8959,7 +8959,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (8949, '6855', 'Letnica', '43.282762', '25.059329'),
 (8950, '6860', 'Lovec', '43.136953', '24.714191'),
 (8951, '6862', 'Lukovit', '43.207835', '24.162994');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (8952, '6873', 'Nikolaevo', '43.252276', '24.602719'),
 (8953, '6890', 'Plackovci', '43.136953', '24.714191'),
 (8954, '6922', 'Slavjanovo', '43.136953', '24.714191'),
@@ -9917,7 +9917,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (9906, '9968', 'Fuyang', '30.048837', '119.960061'),
 (9907, '10005', 'Hangzhou', '30.274089', '120.155069'),
 (9908, '10045', 'Huangyan', '28.650206', '121.261625');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (9909, '10061', 'Huzhou', '30.894348', '120.086823'),
 (9910, '10073', 'Jiaojiang', '28.67297', '121.442967'),
 (9911, '10077', 'Jiaxing', '30.753924', '120.758543'),
@@ -10819,7 +10819,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (10807, '10650', 'Bello', '6.340399999999999', '-75.562271'),
 (10808, '10651', 'Belmira', '6.6', '-75.666667'),
 (10809, '10654', 'Betania', '5.75', '-75.983333');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (10810, '10656', 'Betulia', '6.116999999999999', '-75.988'),
 (10811, '10669', 'Briceno', '7.111111000000001', '-75.55'),
 (10812, '10680', 'Buritica', '6.75', '-75.916667'),
@@ -11694,7 +11694,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (11681, '12075', 'Klimkovice', '49.78809', '18.125861'),
 (11682, '12076', 'Koberice', '49.98548', '18.052127'),
 (11683, '12083', 'Koprivnice', '49.59946999999999', '18.14481');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (11684, '12090', 'Kozlovice', '49.590394', '18.256572'),
 (11685, '12097', 'Kravare', '49.93203', '18.004727'),
 (11686, '12099', 'Krnov', '50.090583', '17.703068'),
@@ -12582,7 +12582,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (12568, '14558', 'Koonga', '58.58028', '24.15749599999999'),
 (12569, '14585', 'Lavassaare', '58.5078', '24.3847'),
 (12570, '14592', 'Libatse', '58.6591', '24.4779');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (12571, '14620', 'Mustla', '58.13061200000001', '25.11327500000001'),
 (12572, '14639', 'Paikuse', '58.3735', '24.61799999999999'),
 (12573, '14646', 'Papsaare', '58.4005', '24.4221'),
@@ -13495,7 +13495,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (13480, '16293', 'Sannois', '48.97078200000001', '2.256869'),
 (13481, '16295', 'Sarcelles', '48.997347', '2.378493'),
 (13482, '16299', 'Sartrouville', '48.941106', '2.158431');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (13483, '16302', 'Savigny-le-temple', '48.59586', '2.580987'),
 (13484, '16304', 'Sceaux', '48.77801600000001', '2.295092'),
 (13485, '16313', 'Sevran', '48.93897', '2.538716'),
@@ -14376,7 +14376,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (14360, '12588', 'Bad Wildbad', '48.751608', '8.549272999999999'),
 (14361, '12592', 'Bad Wurzach', '47.90819199999999', '9.893829'),
 (14362, '12595', 'Baiersbronn', '48.501246', '8.373447000000001');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (14363, '12596', 'Balingen', '48.274821', '8.84953'),
 (14364, '12626', 'Besigheim', '48.998834', '9.148394'),
 (14365, '12631', 'Biberach', '48.095147', '9.790152000000001'),
@@ -15231,7 +15231,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (15214, '12841', 'Erkrath', '51.22131199999999', '6.907347'),
 (15215, '12845', 'Erwitte', '51.606159', '8.340336000000001'),
 (15216, '12848', 'Eschweiler', '50.81073199999999', '6.263075');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (15217, '12849', 'Espelkamp', '52.381471', '8.620971000000001'),
 (15218, '12851', 'Essen', '51.45564300000001', '7.011555'),
 (15219, '12855', 'Euskirchen', '50.65743899999999', '6.789994'),
@@ -16126,7 +16126,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (16108, '18142', 'Limni', '38.765655', '23.318012'),
 (16109, '18153', 'Loukisia', '38.479134', '23.44864'),
 (16110, '18161', 'Magoula', '38.406428', '23.82022');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (16111, '18179', 'Mantoudion', '38.523604', '23.858474'),
 (16112, '18185', 'Marmarion', '38.523604', '23.858474'),
 (16113, '18235', 'Mitikas', '38.441595', '23.646713'),
@@ -17015,7 +17015,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (16996, '18828', 'Palin', '14.403889', '-90.69861099999999'),
 (16997, '18897', 'San Jose', '13.92893', '-90.821022'),
 (16998, '18957', 'Santa Lucia Cotzumalguapa', '14.333333', '-91.016667');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (16999, '18970', 'San Vicente Pacaya', '14.415', '-90.63638900000001'),
 (17000, '18976', 'Siquinala', '14.305833', '-90.96611100000001'),
 (17001, '18989', 'Tiquisate', '14.283333', '-91.36666700000001'),
@@ -17873,7 +17873,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (17853, '20005', 'Koka', '47.484592', '19.579851'),
 (17854, '20017', 'Kosd', '47.805271', '19.177934'),
 (17855, '20033', 'Leanyfalu', '47.718101', '19.084247');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (17856, '20048', 'Maglod', '47.444028', '19.354801'),
 (17857, '20070', 'Mende', '47.431723', '19.458942'),
 (17858, '20087', 'Mogyorod', '47.600102', '19.242046'),
@@ -18763,7 +18763,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (18742, '23818', 'Talipparamba', '10.850516', '76.271083'),
 (18743, '23865', 'Thiruvananthapuram', '8.487494999999999', '76.948623'),
 (18744, '23868', 'Thrissur', '10.523068', '76.222211');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (18745, '23894', 'Tirur', '10.914627', '75.922093'),
 (18746, '23896', 'Tiruvalla', '9.373161', '76.56399500000001'),
 (18747, '23984', 'Vaikam', '9.746487999999999', '76.392647'),
@@ -19667,7 +19667,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (19645, '21879', 'Dindigul', '10.367312', '77.98029099999999'),
 (19646, '21911', 'Dusi', '12.776385', '79.676872'),
 (19647, '21915', 'Elayirampannai', '9.266667', '77.833333');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (19648, '21917', 'Elumalai', '9.8667', '77.7'),
 (19649, '21920', 'Eral', '8.625944', '78.023106'),
 (19650, '21921', 'Eraniel', '8.206467999999999', '77.316648'),
@@ -20562,7 +20562,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (20539, '21405', 'Bareli', '28.362222', '79.42'),
 (20540, '21419', 'Barkhera', '28.491541', '79.80317700000001'),
 (20541, '21426', 'Barsana', '27.647562', '77.37694399999999');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (20542, '21442', 'Basti', '26.81768', '82.763313'),
 (20543, '21460', 'Behat', '30.166667', '77.61666700000001'),
 (20544, '21461', 'Bela', '25.914221', '81.995529'),
@@ -21461,7 +21461,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (21437, '22796', 'Malpur', '23.358747', '73.466229'),
 (21438, '22807', 'Manavadar', '21.497717', '70.137654'),
 (21439, '22813', 'Mandal', '23.289348', '71.919355');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (21440, '22824', 'Mandvi', '22.83317', '69.346367'),
 (21441, '22833', 'Mangrol', '21.121783', '70.11044200000001'),
 (21442, '22851', 'Mansa', '23.4256', '72.662868'),
@@ -22357,7 +22357,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (22332, '25091', 'Poirino', '44.91944', '7.848196'),
 (22333, '25132', 'Racconigi', '44.768267', '7.675913'),
 (22334, '25156', 'Rivalta Di Torino', '45.03164600000001', '7.52543');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (22335, '25158', 'Rivarolo Canavese', '45.33197799999999', '7.72317'),
 (22336, '25159', 'Rivoli', '45.07109', '7.513821'),
 (22337, '25192', 'Saluzzo', '44.64454', '7.492735'),
@@ -23245,7 +23245,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (23219, '25400', 'Varazze', '44.358962', '8.577422'),
 (23220, '25412', 'Ventimiglia', '43.791237', '7.607586'),
 (23221, '24337', 'Abbiategrasso', '45.399052', '8.916555000000001');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (23222, '24351', 'Agrate Brianza', '45.575528', '9.351452'),
 (23223, '24361', 'Albino', '45.763665', '9.801541'),
 (23224, '24369', 'Alzano Lombardo', '45.729399', '9.724119'),
@@ -24163,7 +24163,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (24136, '25490', 'Kuraymah', '32.545442', '35.857153'),
 (24137, '25492', 'Malka', '32.545442', '35.857153'),
 (24138, '25493', 'Qafqafa', '32.545442', '35.857153');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (24139, '25495', 'Raymun', '32.545442', '35.857153'),
 (24140, '25498', 'Sakib', '32.545442', '35.857153'),
 (24141, '25499', 'Sal', '32.545442', '35.857153'),
@@ -25055,7 +25055,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (25027, '27254', 'Amboasary', '-24.333333', '45.95'),
 (25028, '27257', 'Ambovombe', '-25.18465', '46.085121'),
 (25029, '27258', 'Ampanihy', '-24.693049', '44.745176');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (25030, '27264', 'Ankazoabo', '-21.503481', '45.20956'),
 (25031, '27273', 'Beloha', '-25.17989', '45.05825'),
 (25032, '27274', 'Beroroha', '-21.678611', '45.173056'),
@@ -25881,7 +25881,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (25852, '27777', 'Acuitzio', '20.342188', '-102.021132'),
 (25853, '27787', 'Aguililla', '18.734051', '-102.78878'),
 (25854, '27828', 'Alvaro Obregon', '18.758908', '-99.361065');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (25855, '27848', 'Angahuan', '18.681305', '-99.10135'),
 (25856, '27849', 'Angamacutiro', '18.681305', '-99.10135'),
 (25857, '27850', 'Angangueo', '19.492544', '-99.07810000000001'),
@@ -26708,7 +26708,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (26678, '28384', 'Itzincab', '20.913145', '-89.699247'),
 (26679, '28391', 'Ixil', '21.150947', '-89.481662'),
 (26680, '28407', 'Izamal', '20.934548', '-89.01823400000001');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (26681, '28467', 'Kanasin', '20.934444', '-89.557778'),
 (26682, '28468', 'Kantunil', '20.79587', '-89.035887'),
 (26683, '28469', 'Kinchil', '20.916345', '-89.948447'),
@@ -27596,7 +27596,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (27565, '29745', 'Ikire', '7.36', '4.185'),
 (27566, '29751', 'Ila', '8.283333000000001', '4.133333'),
 (27567, '29755', 'Inisa', '7.899035', '4.310288');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (27568, '29756', 'Ipoti', '7.837154', '3.934652'),
 (27569, '29758', 'Iseyin', '7.966667000000001', '3.6'),
 (27570, '29759', 'Iwo', '7.633333', '4.183333'),
@@ -28504,7 +28504,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (28472, '35418', 'Dadu', '26.724409', '67.769547'),
 (28473, '35421', 'Daro', '24.793095', '68.180404'),
 (28474, '35423', 'Darya Khan Mari', '26.679557', '68.28921200000001');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (28475, '35426', 'Daulatpur', '26.503', '67.974'),
 (28476, '35428', 'Daur', '26.454536', '68.319022'),
 (28477, '35433', 'Digri', '25.155556', '69.111389'),
@@ -29351,7 +29351,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (29318, '32224', 'Buenavista', '10.053061', '124.175444'),
 (29319, '32249', 'Bugsoc', '9.796606000000001', '124.24216'),
 (29320, '32372', 'Cabul-an', '9.796606000000001', '124.24216');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (29321, '32411', 'Calape', '9.888999999999999', '123.883'),
 (29322, '32433', 'Calituban', '9.796606000000001', '124.24216'),
 (29323, '32457', 'Camambugan', '10.055', '124.418333'),
@@ -30259,7 +30259,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (30225, '31837', 'Badoc', '17.92931', '120.470001'),
 (30226, '31980', 'Bangui', '18.512734', '120.734958'),
 (30227, '31986', 'Banna', '17.982719', '120.650597');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (30228, '32021', 'Barong', '18.054991', '120.726799'),
 (30229, '32125', 'Bil-loca', '18.08859', '120.57108'),
 (30230, '32435', 'Callaguip', '18.06171', '120.561728'),
@@ -31170,7 +31170,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (31135, '34778', 'Santa Rita', '15.690683', '120.987632'),
 (31136, '34783', 'Santa Rosa', '15.423889', '120.938889'),
 (31137, '34803', 'Santo Cristo', '15.297925', '120.847023');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (31138, '34820', 'Santo Rosario', '15.64664', '120.859943'),
 (31139, '34821', 'Santo Rosario', '15.64664', '120.859943'),
 (31140, '34826', 'Santo Tomas', '15.356082', '120.986198'),
@@ -32090,7 +32090,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (32054, '33448', 'Lumbog', '7.920779', '123.348615'),
 (32055, '33508', 'Mabuhay', '7.920779', '123.348615'),
 (32056, '33569', 'Mahayag', '8.094153', '123.451311');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (32057, '33608', 'Malangas', '7.616667', '123'),
 (32058, '33633', 'Malim', '7.920779', '123.348615'),
 (32059, '33708', 'Mangusu', '7.920779', '123.348615'),
@@ -32999,7 +32999,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (32962, '34741', 'Santa Cruz', '10.247656', '122.988832'),
 (32963, '34785', 'Santa Rosa', '10.247656', '122.988832'),
 (32964, '35004', 'Tabu', '10.247656', '122.988832');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (32965, '35069', 'Talisay', '10.7394', '122.968697'),
 (32966, '35187', 'Tiling', '10.247656', '122.988832'),
 (32967, '35213', 'Toboso', '10.72033', '123.509804'),
@@ -33867,7 +33867,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (33829, '36952', 'Berzovia', '45.426765', '21.62949'),
 (33830, '36980', 'Blajeni', '45.113965', '22.074099'),
 (33831, '36987', 'Bocsa', '45.37191', '21.719919');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (33832, '37015', 'Bolvasnita', '45.345189', '22.308985'),
 (33833, '37044', 'Bozovici', '44.926106', '21.999065'),
 (33834, '37046', 'Brad', '45.113965', '22.074099'),
@@ -34783,7 +34783,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (34744, '39315', 'Valea Stanciului', '44.551505', '22.904416'),
 (34745, '39333', 'Vanatori', '44.239921', '22.929011'),
 (34746, '39335', 'Vanjulet', '44.442799', '22.792581');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (34747, '39350', 'Vartop', '44.551505', '22.904416'),
 (34748, '39362', 'Vela', '44.551505', '22.904416'),
 (34749, '39363', 'Verbita', '44.3', '23.166667'),
@@ -35698,7 +35698,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (35658, '38780', 'Samburesti', '45.079805', '24.083528'),
 (35659, '38868', 'Scundu', '44.840679', '24.187233'),
 (35660, '38937', 'Sirineasa', '44.939765', '24.184915');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (35661, '39025', 'Stoenesti', '45.116667', '24.166667'),
 (35662, '39028', 'Stoilesti', '44.889611', '24.341789'),
 (35663, '39055', 'Suici', '45.25', '24.533333'),
@@ -36617,7 +36617,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (36576, '43558', 'Zlynka', '52.426667', '31.737778'),
 (36577, '39665', 'Babushkin', '54.833115', '112.406053'),
 (36578, '39670', 'Bagdarin', '54.833115', '112.406053');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (36579, '39702', 'Barguzin', '54.833115', '112.406053'),
 (36580, '39726', 'Bayangol', '54.833115', '112.406053'),
 (36581, '39812', 'Bichura', '54.833115', '112.406053'),
@@ -37515,7 +37515,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (37473, '41389', 'Mezhdurechensk', '63.24999999999999', '48.55'),
 (37474, '41409', 'Mikun', '62.357222', '50.076111'),
 (37475, '41482', 'Mulda', '67.473928', '63.675649');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (37476, '41618', 'Nizhniy Odes', '63.638353', '54.844687'),
 (37477, '41812', 'Oktyabrskiy', '67.564314', '64.115825'),
 (37478, '41916', 'Parma', '65.9451', '57.458'),
@@ -38396,7 +38396,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (38353, '40783', 'Knyaginino', '61.52401', '105.318756'),
 (38354, '40897', 'Kovernino', '61.52401', '105.318756'),
 (38355, '40917', 'Krasnaya Gorka', '61.52401', '105.318756');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (38356, '40988', 'Krasnyye Baki', '61.52401', '105.318756'),
 (38357, '41038', 'Kstovo', '61.52401', '105.318756'),
 (38358, '41052', 'Kulebaki', '61.52401', '105.318756'),
@@ -39290,7 +39290,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (39246, '41408', 'Mikhaylovskoye', '43.04513', '44.287097'),
 (39247, '41431', 'Mizur', '43.04513', '44.287097'),
 (39248, '41469', 'Mozdok', '43.04513', '44.287097');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (39249, '41630', 'Nogir', '43.04513', '44.287097'),
 (39250, '41827', 'Oktyabrskoye', '43.04513', '44.287097'),
 (39251, '41836', 'Olginskoye', '43.04513', '44.287097'),
@@ -40175,7 +40175,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (40130, '39515', 'Aksarka', '66.5612', '67.7931'),
 (40131, '40366', 'Gubkinskiy', '66.06530600000001', '76.93451899999999'),
 (40132, '40667', 'Kharp', '66.806944', '65.80333299999999');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (40133, '40960', 'Krasnoselkup', '65.70659999999999', '82.45950000000001'),
 (40134, '41133', 'Labytnangi', '66.65000000000001', '66.40000000000001'),
 (40135, '41487', 'Muravlenko', '63.7753', '74.5189'),
@@ -41070,7 +41070,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (41024, '46733', 'Dundee', '-28.1725', '30.231389'),
 (41025, '46734', 'Durban', '-29.857876', '31.027581'),
 (41026, '46737', 'Ekuvukeni', '-28.47', '30.16');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (41027, '46740', 'Empangeni', '-28.75', '31.9'),
 (41028, '46742', 'Eshowe', '-28.89045', '31.471201'),
 (41029, '46748', 'Glencoe', '-28.183333', '30.15'),
@@ -41970,7 +41970,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (41923, '9561', 'Schattdorf', '46.85', '8.65'),
 (41924, '9356', 'Bagnes', '46.08938', '7.2313'),
 (41925, '9394', 'Conthey', '46.22426999999999', '7.303558999999999');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (41926, '9424', 'Fully', '46.141562', '7.12357'),
 (41927, '9489', 'Martigny', '46.10259500000001', '7.077055'),
 (41928, '9511', 'Naters', '46.325676', '7.996452000000001'),
@@ -42882,7 +42882,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (42834, '44801', 'Bozova', '37.367031', '38.533649'),
 (42835, '44974', 'Siverek', '37.75201', '39.332069'),
 (42836, '44982', 'Suruc', '36.97736', '38.43729');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (42837, '44999', 'Urfa', '37.159149', '38.796909'),
 (42838, '45006', 'Viransehir', '37.23671', '39.769619'),
 (42839, '45001', 'Usak', '38.682301', '29.40819'),
@@ -43785,7 +43785,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (43736, '46133', 'Yarmolyntsi', '49.1925', '26.839722'),
 (43737, '46145', 'Zakupne', '49.119444', '26.336944'),
 (43738, '5070', 'Abu Dhabi', '24.466667', '54.366667');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (43739, '5071', 'Dubai', '25.271139', '55.307485'),
 (43740, '5072', 'Sharjah', '25.357522', '55.391865'),
 (43741, '16761', 'Ellesmere Port', '53.279449', '-2.917793'),
@@ -44664,7 +44664,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (44614, '46294', 'Treinta Y Tres', '-33.23148', '-54.37455000000001'),
 (44615, '46261', 'Artigas', '-30.409722', '-56.472778'),
 (44616, '46262', 'Bella Union', '-30.25771', '-57.59483');
-INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
+INSERT INTO `Cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (44617, '46263', 'Canelones', '-34.516667', '-56.283333'),
 (44618, '46273', 'La Paz', '-34.761667', '-56.223333'),
 (44619, '46274', 'Las Piedras', '-34.716667', '-56.216667'),
@@ -44986,7 +44986,7 @@ INSERT INTO `cities` (`id`, `cityId`, `cityName`, `cityLat`, `cityLon`) VALUES
 (44935, '46983', 'Zvishavane', '29.88152', ' -20.12103'),
 (44936, '15619', 'Auch', '43.65', '0.583333');
 
-INSERT INTO `countries` (`id`, `countryId`, `countryName`) VALUES
+INSERT INTO `Countries` (`id`, `countryId`, `countryName`) VALUES
 (1, 'AD', 'Andorra'),
 (2, 'AE', 'United Arab Emirates'),
 (3, 'AF', 'Afghanistan'),
@@ -45155,7 +45155,7 @@ INSERT INTO `countries` (`id`, `countryId`, `countryName`) VALUES
 (166, 'ZM', 'Zambia'),
 (167, 'ZW', 'Zimbabwe');
 
-INSERT INTO `states` (`id`, `country_id`, `stateId`, `stateName`) VALUES
+INSERT INTO `States` (`id`, `country_id`, `stateId`, `stateName`) VALUES
 (1, 157, 'AK', 'Alaska'),
 (2, 157, 'AL', 'Alabama'),
 (3, 157, 'AR', 'Arkansas'),
@@ -46883,7 +46883,7 @@ INSERT INTO `states` (`id`, `country_id`, `stateId`, `stateName`) VALUES
 (1725, 125, '04', 'Caaguazu'),
 (1726, 125, '05', 'Caazapa'),
 (1727, 125, '06', 'Central');
-INSERT INTO `states` (`id`, `country_id`, `stateId`, `stateName`) VALUES
+INSERT INTO `States` (`id`, `country_id`, `stateId`, `stateName`) VALUES
 (1728, 125, '07', 'Concepcion'),
 (1729, 125, '08', 'Cordillera'),
 (1730, 119, '10', 'Huanuco'),
@@ -48569,7 +48569,7 @@ INSERT INTO `states` (`id`, `country_id`, `stateId`, `stateName`) VALUES
 (3410, 107, '12', 'Mangochi'),
 (3411, 107, '13', 'Mchinji'),
 (3412, 107, '15', 'Mzimba');
-INSERT INTO `states` (`id`, `country_id`, `stateId`, `stateName`) VALUES
+INSERT INTO `States` (`id`, `country_id`, `stateId`, `stateName`) VALUES
 (3413, 107, '16', 'Ntcheu'),
 (3414, 107, '17', 'Nkhata Bay'),
 (3415, 107, '18', 'Nkhotakota'),
@@ -50250,7 +50250,7 @@ INSERT INTO `states` (`id`, `country_id`, `stateId`, `stateName`) VALUES
 (5090, 74, '02', 'Andhra Pradesh'),
 (5091, 74, '03', 'Assam'),
 (5092, 74, '05', 'Chandigarh');
-INSERT INTO `states` (`id`, `country_id`, `stateId`, `stateName`) VALUES
+INSERT INTO `States` (`id`, `country_id`, `stateId`, `stateName`) VALUES
 (5093, 74, '06', 'Dadra and Nagar Haveli'),
 (5094, 74, '07', 'Delhi'),
 (5095, 74, '09', 'Gujarat'),
@@ -51936,7 +51936,7 @@ INSERT INTO `states` (`id`, `country_id`, `stateId`, `stateName`) VALUES
 (6775, 162, '77', 'Vinh Long'),
 (6776, 162, '03', 'Ben Tre'),
 (6777, 162, '05', 'Cao Bang');
-INSERT INTO `states` (`id`, `country_id`, `stateId`, `stateName`) VALUES
+INSERT INTO `States` (`id`, `country_id`, `stateId`, `stateName`) VALUES
 (6778, 164, '16', 'San'),
 (6779, 164, '08', 'Al Hudaydah'),
 (6780, 166, '01', 'Western'),
@@ -51958,7 +51958,7 @@ INSERT INTO `states` (`id`, `country_id`, `stateId`, `stateName`) VALUES
 --
 
 --
--- Constraints for table `states`
+-- Constraints for table `States`
 --
-ALTER TABLE `states`
-  ADD CONSTRAINT `FK_6252FDFFF92F3E70` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`);
+ALTER TABLE `States`
+  ADD CONSTRAINT `FK_6252FDFFF92F3E70` FOREIGN KEY (`country_id`) REFERENCES `Countries` (`id`);
