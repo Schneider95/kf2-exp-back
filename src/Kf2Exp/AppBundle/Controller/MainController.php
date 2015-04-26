@@ -48,7 +48,7 @@ class MainController extends Controller
             ->checkIfPlayerExistOnSteam($profileUrl);
 
     $response = new JsonResponse();
-    $response->setContent($checkIfPlayerExistOnSteamResponse);
+    $response->setData($checkIfPlayerExistOnSteamResponse);
     $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
 
     return new JsonResponse($checkIfPlayerExistOnSteamResponse);
@@ -68,7 +68,7 @@ class MainController extends Controller
             ->checkIfPlayerHaveGame($steamId);
 
     $response = new JsonResponse();
-    $response->setContent($checkIfPlayerHaveGameResponse);
+    $response->setData($checkIfPlayerHaveGameResponse);
     $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
 
     return $response;
