@@ -1,0 +1,5 @@
+kf_exp_app:
+    resource: "@Kf2ExpAppBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
