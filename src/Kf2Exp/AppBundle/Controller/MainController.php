@@ -9,13 +9,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
-class MainController extends Controller{
+class MainController extends Controller
+{
 
   /**
    * @Route("/checkIfPlayerExistInDatabase")
    * @Method("GET")
    */
-  public function checkIfPlayerExistInDatabaseAction(Request $request) {
+  public function checkIfPlayerExistInDatabaseAction(Request $request)
+  {
 
     $profileUrl = $request->query->get('profileUrl');
 
@@ -24,14 +26,19 @@ class MainController extends Controller{
     $checkIfPlayerExistInDatabaseResponse = $steamRequestManager
             ->checkIfPlayerExistInDatabase($profileUrl);
 
-    return new JsonResponse($checkIfPlayerExistInDatabaseResponse);
+    $response = new JsonResponse();
+    $response->setContent($checkIfPlayerExistInDatabaseResponse);
+    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
+
+    return $response;
   }
 
   /**
    * @Route("/checkIfPlayerExistOnSteam")
    * @Method("GET")
    */
-  public function checkIfPlayerExistOnSteamAction(Request $request) {
+  public function checkIfPlayerExistOnSteamAction(Request $request)
+  {
 
     $profileUrl = $request->query->get('profileUrl');
 
@@ -40,6 +47,10 @@ class MainController extends Controller{
     $checkIfPlayerExistOnSteamResponse = $steamRequestManager
             ->checkIfPlayerExistOnSteam($profileUrl);
 
+    $response = new JsonResponse();
+    $response->setContent($checkIfPlayerExistOnSteamResponse);
+    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
+
     return new JsonResponse($checkIfPlayerExistOnSteamResponse);
   }
 
@@ -47,7 +58,8 @@ class MainController extends Controller{
    * @Route("/checkIfPlayerHaveGame")
    * @Method("GET")
    */
-  public function checkIfPlayerHaveGameAction(Request $request) {
+  public function checkIfPlayerHaveGameAction(Request $request)
+  {
     $steamId = $request->query->get('steamId');
 
     $steamRequestManager = $this->container
@@ -55,14 +67,19 @@ class MainController extends Controller{
     $checkIfPlayerHaveGameResponse = $steamRequestManager
             ->checkIfPlayerHaveGame($steamId);
 
-    return new JsonResponse($checkIfPlayerHaveGameResponse);
+    $response = new JsonResponse();
+    $response->setContent($checkIfPlayerHaveGameResponse);
+    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
+
+    return $response;
   }
 
   /**
    * @Route("/getAchievementsList")
    * @Method("GET")
    */
-  public function getAchievementsListAction() {
+  public function getAchievementsListAction()
+  {
     $em = $this->getDoctrine()->getManager();
 
     $stats = $em->getRepository('Kf2ExpAppBundle:Achievement')
@@ -70,23 +87,35 @@ class MainController extends Controller{
 
     $serializer = $this->container->get('serializer');
     $json = $serializer->serialize($stats, 'json');
-    return new Response($json);
+
+    $response = new JsonResponse();
+    $response->setContent($json);
+    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
+
+    return $response;
   }
 
   /**
    * @Route("/getCitiesWithPlayers")
    * @Method("GET")
    */
-  public function getCitiesWithPlayersAction(Request $request) {
+  public function getCitiesWithPlayersAction(Request $request)
+  {
     $content = file_get_contents('cities.json');
-    return new Response($content);
+
+    $response = new JsonResponse();
+    $response->setContent($content);
+    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
+
+    return $response;
   }
 
   /**
    * @Route("/getLastUpdatedPlayers")
    * @Method("GET")
    */
-  public function getLastUpdatedPlayersAction() {
+  public function getLastUpdatedPlayersAction()
+  {
 
     $em = $this->getDoctrine()->getManager();
     $repository = $em->getRepository('Kf2ExpAppBundle:Player');
@@ -95,8 +124,7 @@ class MainController extends Controller{
 
     $arrayPlayers = array();
 
-    foreach ($players as $p)
-    {
+    foreach ($players as $p) {
       $arrayPlayers[] = array('playerId' => $p->getId(),
           'steamId' => $p->getSteamId(),
           'steamName' => $p->getSteamName(),
@@ -108,6 +136,8 @@ class MainController extends Controller{
 
     $response = new JsonResponse();
     $response->setData($arrayPlayers);
+    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
+
     return $response;
   }
 
@@ -115,7 +145,8 @@ class MainController extends Controller{
    * @Route("/getPlayersByCity")
    * @Method("GET")
    */
-  public function getPlayersByCityAction() {
+  public function getPlayersByCityAction()
+  {
     $em = $this->getDoctrine()->getManager();
 
     $request = $this->get('request');
@@ -131,15 +162,17 @@ class MainController extends Controller{
 
     $arrayPlayers = array();
 
-    foreach ($players as $p)
-    {
+    foreach ($players as $p) {
       $arrayPlayers[] = array('playerId' => $p->getId(),
           'steamName' => $p->getSteamName());
     }
 
     $arrayResponse['players'] = $arrayPlayers;
 
-    $response = new JsonResponse($arrayResponse);
+    $response = new JsonResponse();
+    $response->setData($arrayResponse);
+    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
+
     return $response;
   }
 
@@ -147,7 +180,8 @@ class MainController extends Controller{
    * @Route("/getPlayersList")
    * @Method("GET")
    */
-  public function getPlayersListAction() {
+  public function getPlayersListAction()
+  {
     $em = $this->getDoctrine()->getManager();
 
     $request = $this->get('request');
@@ -158,8 +192,7 @@ class MainController extends Controller{
 
     $arrayPlayers = array();
 
-    foreach ($players as $p)
-    {
+    foreach ($players as $p) {
       $arrayPlayers[] = array(
           'playerId' => $p->getId(),
           'steamName' => utf8_encode($p->getSteamName()),
@@ -167,30 +200,20 @@ class MainController extends Controller{
       );
     }
 
-    $response = new JsonResponse($arrayPlayers);
+    $response = new JsonResponse();
+    $response->setContent($arrayPlayers);
+    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
+
     return $response;
   }
 
-  /**
-   * @Route("/getProfileData")
-   * @Method("GET")
-   */
-  public function getProfileDataAction(Request $request) {
-    $steamId = $request->query->get('steamId');
-
-    $steamRequestManager = $this->container
-            ->get('kf2exp.steamrequestmanager');
-    $getProfileDataResponse = $steamRequestManager
-            ->getProfileData($steamId);
-
-    return new JsonResponse($getProfileDataResponse);
-  }
 
   /**
    * @Route("/getPlayer/{id}")
    * @Method("GET")
    */
-  public function getPlayerAction($id) {
+  public function getPlayerAction($id)
+  {
     $em = $this->getDoctrine()->getManager();
 
     $player = $em->getRepository('Kf2ExpAppBundle:Player')
@@ -198,14 +221,40 @@ class MainController extends Controller{
 
     $serializer = $this->container->get('serializer');
     $json = $serializer->serialize($player, 'json');
-    return new Response($json);
+
+    $response = new JsonResponse();
+    $response->setContent($json);
+    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
+
+    return $response;
   }
 
+  /**
+   * @Route("/getProfileData")
+   * @Method("GET")
+   */
+  public function getProfileDataAction(Request $request)
+  {
+    $steamId = $request->query->get('steamId');
+
+    $steamRequestManager = $this->container
+            ->get('kf2exp.steamrequestmanager');
+    $getProfileDataResponse = $steamRequestManager
+            ->getProfileData($steamId);
+
+    $response = new JsonResponse();
+    $response->setData($getProfileDataResponse);
+    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
+
+    return $response;
+  }
+  
   /**
    * @Route("/getStatsList")
    * @Method("GET")
    */
-  public function getStatsListAction() {
+  public function getStatsListAction()
+  {
     $em = $this->getDoctrine()->getManager();
 
     $stats = $em->getRepository('Kf2ExpAppBundle:Stat')
@@ -213,14 +262,20 @@ class MainController extends Controller{
 
     $serializer = $this->container->get('serializer');
     $json = $serializer->serialize($stats, 'json');
-    return new Response($json);
+
+    $response = new JsonResponse();
+    $response->setContent($json);
+    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
+
+    return $response;
   }
 
   /**
    * @Route("/getMapsList")
    * @Method("GET")
    */
-  public function getMapsListAction() {
+  public function getMapsListAction()
+  {
     $em = $this->getDoctrine()->getManager();
 
     $maps = $em->getRepository('Kf2ExpAppBundle:Achievement')
@@ -228,38 +283,46 @@ class MainController extends Controller{
 
     $serializer = $this->container->get('serializer');
     $json = $serializer->serialize($maps, 'json');
-    return new Response($json);
+
+    $response = new JsonResponse();
+    $response->setContent($json);
+    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
+
+    return $response;
   }
 
   /**
    * @Route("/getStatsRanking")
    * @Method("GET")
    */
-  public function getStatsRankingAction() {
+  public function getStatsRankingAction()
+  {
 
     $em = $this->getDoctrine()->getManager();
     $request = $this->get('request');
 
     $statName = $request->query->get('statName');
 
-    if (empty($statName))
-    {
+    $response = new JsonResponse();
+    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
 
-      return new JsonResponse('The GET parameter statName is mandatory and must be a numeric.');
+    if (empty($statName)) {
+      $response->setContent('The GET parameter statName is mandatory and must be a numeric.');
+      return $response;
     }
 
     if ($request->query->get('nbPlayerLoaded') == '' ||
-            is_numeric($request->query->get('nbPlayerLoaded')) == false)
-    {
+            is_numeric($request->query->get('nbPlayerLoaded')) == false) {
 
-      return new JsonResponse('The GET parameter nbPlayerLoaded is mandatory and must be a numeric.');
+      $response->setContent('The GET parameter nbPlayerLoaded is mandatory and must be a numeric.');
+      return $response;
     }
 
     if ($request->query->get('nbPlayerToLoad') == '' ||
-            is_numeric($request->query->get('nbPlayerToLoad')) == false)
-    {
+            is_numeric($request->query->get('nbPlayerToLoad')) == false) {
 
-      return new JsonResponse('The GET parameter nbPlayerToLoad is mandatory and must be a numeric.');
+      $response->setContent('The GET parameter nbPlayerToLoad is mandatory and must be a numeric.');
+      return $response;
     }
 
     $nbPlayerLoaded = $request->query->get('nbPlayerLoaded');
@@ -268,7 +331,6 @@ class MainController extends Controller{
     $playerStats = $em->getRepository('Kf2ExpAppBundle:PlayerStat')
             ->getStatsRanking($statName, $nbPlayerLoaded, $nbPlayerToLoad);
 
-    $response = new JsonResponse();
     $response->setData($playerStats);
     return $response;
   }
@@ -277,7 +339,8 @@ class MainController extends Controller{
    * @Route("/updateProfileData")
    * @Method("GET")
    */
-  public function updateProfileDataAction(Request $request) {
+  public function updateProfileDataAction(Request $request)
+  {
     $steamId = $request->query->get('steamId');
 
     $steamRequestManager = $this->container
@@ -285,14 +348,18 @@ class MainController extends Controller{
     $updateProfileDataResponse = $steamRequestManager
             ->updateProfileData($steamId);
 
-    return new JsonResponse($updateProfileDataResponse);
+    $response = new JsonResponse();
+    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
+    $response->setContent($updateProfileDataResponse);
+    return $response;
   }
 
   /**
    * @Route("/updateStatsData")
    * @Method("GET")
    */
-  public function updateStatsDataAction(Request $request) {
+  public function updateStatsDataAction(Request $request)
+  {
     $steamId = $request->query->get('steamId');
 
     $steamRequestManager = $this->container
@@ -300,14 +367,19 @@ class MainController extends Controller{
     $updateStatsDataResponse = $steamRequestManager
             ->updateStatsData($steamId);
 
-    return new JsonResponse($updateStatsDataResponse);
+    $response = new JsonResponse();
+    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
+    $response->setData($updateStatsDataResponse);
+
+    return $response;
   }
 
   /**
    * @Route("/updateTimePlayed")
    * @Method("GET")
    */
-  public function updateTimePlayedAction(Request $request) {
+  public function updateTimePlayedAction(Request $request)
+  {
     $steamId = $request->query->get('steamId');
 
     $steamRequestManager = $this->container
@@ -315,7 +387,11 @@ class MainController extends Controller{
     $updateTimePlayedResponse = $steamRequestManager
             ->updateTimePlayed($steamId);
 
-    return new JsonResponse($updateTimePlayedResponse);
+    $response = new JsonResponse();
+    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
+    $response->setData($updateTimePlayedResponse);
+
+    return $response;
   }
 
 }
