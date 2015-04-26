@@ -1,0 +1,29 @@
+<td ng-bind="mapKey"></td>
+<td ng-repeat-start="player in ctrl.getPlayers() track by $index">
+  <span class="label" 
+        ng-class="{ 'mapDone': player.player_achievements[mapObject.No] === '1', 
+                    'mapNotDone': player.player_achievements[mapObject.No] === undefined}">
+    No
+  </span>
+</td>
+<td>
+  <span class="label" 
+        ng-class="{ 'mapDone': player.player_achievements[mapObject.Ha] === '1', 
+                    'mapNotDone': player.player_achievements[mapObject.Ha] === undefined}">
+    Ha
+  </span>
+</td>
+<td>
+  <span class="label" 
+        ng-class="{ 'mapDone': player.player_achievements[mapObject.Su] === '1', 
+                    'mapNotDone': player.player_achievements[mapObject.Su] === undefined}">
+    Su
+  </span>
+</td>
+<td ng-repeat-end class="tdAchievementRight">
+  <span class="label" 
+        ng-class="{ 'mapDone': player.player_achievements[mapObject.He] === '1', 
+                    'mapNotDone': player.player_achievements[mapObject.He] === undefined}">
+    He
+  </span>
+</td>

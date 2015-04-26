@@ -1,0 +1,37 @@
+<md-content flex  class="md-padding" id="content">
+  <div layout="row">
+    <div flex-gt-sm="80" flex-sm="100">
+      <h2>Add a player</h2>
+
+      <p>Steam profile URL is required to retrieve player stats. This URL is available on Steam > player profile > right-click on the page > Copy page address.</p>
+      <p>This URL can have those form : <br><ul><li>http://steamcommunity.com/profiles/76561198004801490/</li><li>http://steamcommunity.com/id/killer_nemesis/</li></ul>
+    </div>
+  </div>
+  <div layout="row">
+    <div flex-gt-sm="60">
+      <md-input-container>
+        <label>STEAM PROFILE URL</label>
+        <input ng-model="ctrl.playerURL" placeholder="http://steamcommunity.com/profiles/76561198004801490/">
+      </md-input-container>
+    </div>
+    <div flex-gt-sm="20">
+      <md-button style="margin-top:18px;" md-no-ink class="md-primary" 
+                 ng-hide="ctrl.registeringPlayerState()"
+                 ng-click="ctrl.submit()">Ajouter</md-button>
+    </div>
+    <div flex-gt-sm="20" hide-sm>
+    </div>
+  </div>
+  <div layout="row" layout-align="space-around">
+    <md-progress-circular class="md-hue-2" 
+                          md-mode="indeterminate"
+                          ng-show="ctrl.registeringPlayerState()">
+
+    </md-progress-circular>
+  </div>
+  <div layout="column" layout-align="center center"
+       class="whiteframeBasicUsage">
+    <br><span ng-bind="ctrl.registeringPlayerMessage()"></span>
+  </div>
+
+</md-content>

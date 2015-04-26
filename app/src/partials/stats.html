@@ -1,0 +1,354 @@
+<md-content flex  class="md-padding" id="content">
+  <div layout="row">
+    <h2>Stats</h2>
+  </div>
+  <div layout="row" flex layout-sm="column" ng-show="ctrl.getNbPlayers() > 0">
+    <md-tabs md-selected="selectedIndex" md-border-bottom md-dynamic-height>
+      <md-tab label="Profile">
+        <br>
+        <table class="table table-striped table-bordered table-condensed">
+          <thead>
+            <tr>
+              <td></td>
+              <td class="tdImgPlayer" 
+                  ng-repeat="player in ctrl.getPlayers() track by $index">
+                <div layout="row" layout-sm="column" 
+                     layout-align="space-around">
+                  <md-progress-circular ng-show="player.updating"  
+                                        md-mode="indeterminate">
+                  </md-progress-circular>
+                </div>
+                <img  ng-hide="player.updating"  
+                      class="achievementsImgAvatar" 
+                      src="{{player.avatar_medium}}"/>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="trOdd">
+              <td>Name</td>
+              <td ng-repeat="player in ctrl.getPlayers() track by $index"
+                  ng-bind="player.steam_name">
+              </td>
+            </tr>
+            <tr class="trEven">
+              <td>Update state</td>
+              <td ng-repeat="player in ctrl.getPlayers() track by $index"
+                  ng-bind="player.update_state">
+              </td>
+            </tr>
+            <tr>
+              <td class="emptyRow"></td>
+            </tr>
+            <tr class="trOdd">
+              <td>Steam profile</td>
+              <td ng-repeat="player in ctrl.getPlayers() track by $index">
+                <a href="{{player.profile_url}}">Steam profile</a>
+              </td> 
+            </tr>
+            <tr class="trEven">
+              <td>Time played</td>
+              <td ng-repeat="player in ctrl.getPlayers() track by $index"
+                  ng-bind="ctrl.getReadableTimePlayed(player.time_played)">
+              </td>
+            </tr>
+            <tr class="trOdd">
+              <td>Achievements</td>
+              <td ng-repeat="player in ctrl.getPlayers() track by $index">
+                {{player.nb_achievements}} / {{ctrl.getNumberOfAchievements()}}
+              </td>
+            </tr>
+            <tr class="trEven">
+              <td>Country</td>
+              <td ng-repeat="player in ctrl.getPlayers() track by $index"
+                  ng-bind="player.country.country_name"></td>
+            </tr>
+            <tr class="trOdd">
+              <td>State</td>
+              <td ng-repeat="player in ctrl.getPlayers() track by $index"
+                  ng-bind="player.state.state_name"></td>
+            </tr>
+            <tr class="trEven">
+              <td>City</td>            
+              <td ng-repeat="player in ctrl.getPlayers() track by $index"
+                  ng-bind="player.city.city_name"></td>
+            </tr>
+            <tr class="trOdd">
+              <td></td>            
+              <td ng-repeat="(id, player) in ctrl.getPlayers() track by $index">
+          <md-button class="md-warn deleteButton" ng-click="ctrl.removePlayer(id)">Delete</md-button>
+          </td>
+          </tr>
+          </tbody>
+        </table>
+      </md-tab>
+      <md-tab label="Perks">
+        <br>
+        <table class="table table-striped table-bordered table-condensed">
+          <thead>
+            <tr>
+              <td></td>
+              <td class="tdImgPlayer" 
+                  ng-repeat="player in ctrl.getPlayers() track by $index">
+                <div layout="row" layout-sm="column" 
+                     layout-align="space-around">
+                  <md-progress-circular ng-show="player.updating"  
+                                        md-mode="indeterminate">
+
+                  </md-progress-circular>
+                </div>
+                <img  ng-hide="player.updating"  
+                      class="achievementsImgAvatar" 
+                      src="{{player.avatar_medium}}"/>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="trOdd">
+              <td>Name</td>
+              <td ng-repeat="player in ctrl.getPlayers() track by $index"
+                  ng-bind="player.steam_name">
+              </td>
+            </tr>
+            <tr class="trEven">
+              <td>Update state</td>
+              <td ng-repeat="player in ctrl.getPlayers() track by $index"
+                  ng-bind="player.update_state">
+              </td>
+            </tr>
+            <tr>
+              <td class="emptyRow"></td>
+            </tr>
+            <tr class="trOdd">
+              <td>Medic</td>
+              <td ng-repeat="player in ctrl.getPlayers() track by $index"
+                  ng-bind="player.medic_level" class="perk05"
+                  ng-class="{perk6: player.medic_level == '6+' || player.medic_level == '6'}">
+              </td>
+            </tr>
+            <tr class="trEven">
+              <td>Sharpshooter</td>
+              <td ng-repeat="player in ctrl.getPlayers() track by $index"
+                  ng-bind="player.sharpshooter_level" class="perk05"
+                  ng-class="{perk6: player.sharpshooter_level == '6+' || player.sharpshooter_level == '6'}">
+              </td>
+            </tr>
+            <tr class="trOdd">
+              <td>Support</td>
+              <td ng-repeat="player in ctrl.getPlayers() track by $index"
+                  ng-bind="player.support_level" class="perk05"
+                  ng-class="{perk6: player.support_level == '6+' || player.support_level == '6'}">
+              </td>
+            </tr>
+            <tr class="trEven">
+              <td>Commando</td>
+              <td ng-repeat="player in ctrl.getPlayers() track by $index"
+                  ng-bind="player.commando_level" class="perk05"
+                  ng-class="{perk6: player.commando_level == '6+' || player.commando_level == '6'}">
+              </td>
+            </tr>
+            <tr class="trOdd">
+              <td>Berzerk</td>
+              <td ng-repeat="player in ctrl.getPlayers() track by $index"
+                  ng-bind="player.berzerk_level" class="perk05"
+                  ng-class="{perk6: player.berzerk_level == '6+' || player.berzerk_level == '6'}">
+              </td>
+            </tr>
+            <tr class="trEven">
+              <td>Firebug</td>
+              <td ng-repeat="player in ctrl.getPlayers() track by $index"
+                  ng-bind="player.firebug_level" class="perk05"
+                  ng-class="{perk6: player.firebug_level == '6+' || player.firebug_level == '6'}">
+              </td>
+            </tr>
+            <tr class="trOdd">
+              <td>Demolitions</td> 
+              <td ng-repeat="player in ctrl.getPlayers() track by $index"
+                  ng-bind="player.demolitions_level" class="perk05"
+                  ng-class="{perk6: player.demolitions_level == '6+' || player.demolitions_level == '6'}">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>Warning : some perks datas are probably wrong. Contact me on Steam if you found errors.</p>
+
+      </md-tab>
+
+      <md-tab label="Skills">
+        <br>
+        <table class="table table-striped table-bordered table-condensed">
+          <thead>
+            <tr>
+              <td></td>
+              <td class="tdImgPlayer" 
+                  ng-repeat="player in ctrl.getPlayers() track by $index">
+                <div layout="row" layout-sm="column" 
+                     layout-align="space-around">
+                  <md-progress-circular ng-show="player.updating"  
+                                        md-mode="indeterminate">
+
+                  </md-progress-circular>
+                </div>
+                <img  ng-hide="player.updating"  
+                      class="achievementsImgAvatar" 
+                      src="{{player.avatar_medium}}"/>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="trOdd">
+              <td>Name</td>
+              <td ng-repeat="player in ctrl.getPlayers() track by $index"
+                  ng-bind="player.steam_name">
+              </td>
+            </tr>
+            <tr class="trEven">
+              <td>Update state</td>
+              <td ng-repeat="player in ctrl.getPlayers() track by $index"
+                  ng-bind="player.update_state">
+              </td>
+            </tr>
+            <tr>
+              <td class="emptyRow"></td>
+            </tr>
+            <tr class="trOdd">
+              <td>Medic</td>
+              <td ng-repeat="player in ctrl.getPlayers() track by $index"
+                  build-data="ctrl.getBuildsList().medic[player.player_stats['1_41']]"
+                  build>
+              </td>
+            </tr>
+            <tr class="trEven">
+              <td>Support</td>
+              <td ng-repeat="player in ctrl.getPlayers() track by $index"
+                  build-data="ctrl.getBuildsList().support[player.player_stats['1_21']]"
+                  build>
+              </td>
+            </tr>
+            <tr class="trOdd">
+              <td>Commando</td>
+              <td ng-repeat="player in ctrl.getPlayers() track by $index"
+                  build-data="ctrl.getBuildsList().commando[player.player_stats['1_2']]"
+                  build>
+              </td>
+            </tr>
+            <tr class="trEven">
+              <td>Berzerk</td>
+              <td ng-repeat="player in ctrl.getPlayers() track by $index"
+                  build-data="ctrl.getBuildsList().berzerk[player.player_stats['1_11']]"
+                  build>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+
+        <p>Warning : some skills datas are probably wrong. Contact me on Steam if you found errors.</p>
+
+      </md-tab>
+
+      <md-tab label="Achievements">
+        <br>
+        <table class="table table-bordered table-striped tableAchivements">
+          <thead>
+            <tr>
+              <td></td>
+              <td class="tdImgPlayer"  colspan="4" 
+                  ng-repeat="player in ctrl.getPlayers() track by $index">
+                <div layout="row" layout-sm="column" 
+                     layout-align="space-around">
+                  <md-progress-circular ng-show="player.updating"  
+                                        md-mode="indeterminate">
+
+                  </md-progress-circular>
+                </div>
+                <img  ng-hide="player.updating"  
+                      class="achievementsImgAvatar" 
+                      src="{{player.avatar_medium}}"/>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="trOdd">
+              <td>Name</td>
+              <td colspan="4"
+                  ng-repeat="player in ctrl.getPlayers() track by $index"
+                  ng-bind="player.steam_name">
+              </td>
+            </tr>
+            <tr class="trEven">
+              <td>Update state</td>
+              <td colspan="4" 
+                  ng-repeat="player in ctrl.getPlayers() track by $index"
+                  ng-bind="player.update_state">
+              </td>
+            </tr>
+            <tr class="trOdd">
+              <td>Achievements Unlocked</td>
+              <td colspan="4" 
+                  ng-repeat="player in ctrl.getPlayers() track by $index">
+                {{player.nb_achievements_maps}} / {{ctrl.getNumberOfAchievementsMaps()}}
+              </td>
+            </tr>
+            <tr>
+              <td class="emptyRow"></td>
+            </tr>
+            <tr ng-repeat="(mapKey, mapObject) in ctrl.getMapsList() track by $index"  ng-class-odd="'trOdd'" ng-class-even="'trEven'"
+                achievement-map >
+            </tr>
+          </tbody>
+        </table>
+      </md-tab>
+      <md-tab label="Stats">
+        <br>
+        <table class="table table-bordered table-striped tableAchivements">
+          <thead>
+            <tr>
+              <td></td>
+              <td class="tdImgPlayer" 
+                  ng-repeat="player in ctrl.getPlayers() track by $index">
+                <div layout="row" layout-sm="column" 
+                     layout-align="space-around">
+                  <md-progress-circular ng-show="player.updating"  
+                                        md-mode="indeterminate">
+
+                  </md-progress-circular>
+                </div>
+                <img  ng-hide="player.updating"  
+                      class="achievementsImgAvatar" 
+                      src="{{player.avatar_medium}}"/>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="trOdd">
+              <td class="statName">Name</td>
+              <td 
+                ng-repeat="player in ctrl.getPlayers() track by $index"
+                ng-bind="player.steam_name">
+              </td>
+            </tr>
+            <tr class="trEven">
+              <td>Update state</td>
+              <td
+                ng-repeat="player in ctrl.getPlayers() track by $index"
+                ng-bind="player.update_state">
+              </td>
+            </tr>
+            <tr>
+              <td class="emptyRow"></td>
+            </tr>
+            <tr ng-repeat="stat in ctrl.getStatsList()"  ng-class-odd="'trOdd'" ng-class-even="'trEven'"
+                stat>
+            </tr>
+          </tbody>
+        </table>
+
+      </md-tab>
+    </md-tabs>
+  </div>
+  <div layout="row" flex layout-sm="column" ng-show="ctrl.getNbPlayers() === 0">
+    <p>Add players with the "Add player" page on the left menu</p>
+  </div>
+</md-content>

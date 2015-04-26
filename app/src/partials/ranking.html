@@ -1,0 +1,26 @@
+<md-content flex  class="md-padding" id="content">
+  <div layout="row">
+    <h2>Ranking</h2>
+  </div>
+  <div layout="row" layout-align="center center">
+    <md-select ng-model="ctrl.selectedStat" 
+               ng-change="ctrl.changeStat()"
+               placeholder="Favorite Topping">
+      <md-option ng-value="stat.stat_name" 
+                 ng-repeat="stat in ctrl.getStatsList()">
+        {{stat.visible_stat_name}}
+      </md-option>
+    </md-select>
+  </div>
+  <div layout="row">
+    <md-content flex  class='md-padding' style="height: 500px;"  layout="row" layout-align="center center">
+      <table>
+        <tr class="rankingTr" flex ng-repeat="item in ctrl.getStatsRetrieved() track by $index" ng-class-odd="'trOdd'" ng-class-even="'trEven'">
+          <td>{{$index + 1}}</td>
+          <td class="steamName" ng-click="ctrl.addPlayerToStatPage(item.id)">{{item.steamName}}</td>
+          <td>{{item.value}}</td>
+        </tr>
+      </table>
+    </md-content>
+  </div>
+</md-content>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <title>Angular Material - Starter App</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
+    <link rel="stylesheet" href="./bower_components/angular-material/angular-material.min.css"/>
+    <link rel="stylesheet" href="./bower_components/angular-material/modules/css/angular-material-layout.css"/>
+    <link rel="stylesheet" href="assets/app.css"/>
+    <link rel="icon" type="image/png" href="favicon.ico" />
+  </head>
+
+  <body ng-app="kf2App" layout="column" ng-controller="AppController as ac">
+
+  <md-toolbar layout="row">
+    <md-button class="menu" hide-gt-lg ng-click="ac.toggleList()">
+      <md-icon md-svg-icon="svg-menu" ></md-icon>
+    </md-button>
+    <h1 class="appTitle">Killing Floor 2 - Stats App</h1>
+  </md-toolbar>
+  <div flex layout="row">
+    <!--sm, gt-sm, md, gt-md, lg or gt-lg -->
+    <md-sidenav  md-is-locked-open="$mdMedia('gt-lg')" 
+                 class="md-whiteframe-z2" md-component-id="left">
+      <md-list>
+        <md-item>
+          <md-button ng-click="ac.go('/home')" class="md-button md-default-theme menuButton">
+            <md-icon md-svg-icon="svg-home" class="icon"></md-icon>Home
+          </md-button>
+        </md-item>
+        <md-item>
+          <md-button ng-click="ac.go('/addPlayer')" class="md-button md-default-theme menuButton">
+            <md-icon md-svg-icon="svg-person-add" class="icon"></md-icon>Add player
+          </md-button>
+        </md-item>
+        <md-item>
+          <md-button ng-click="ac.goToStatsPage()" class="md-button md-default-theme menuButton">
+            <md-icon md-svg-icon="svg-assessment" class="icon"></md-icon>Stats page
+          </md-button>
+        </md-item>
+        <md-item>
+          <md-button ng-click="ac.go('/ranking')" class="md-button md-default-theme menuButton">
+            <md-icon md-svg-icon="svg-ranking" class="icon"></md-icon>Ranking
+          </md-button>
+        </md-item>
+        <md-item>
+          <md-button ng-click="ac.go('/map')" class="md-button md-default-theme menuButton">
+            <md-icon md-svg-icon="svg-map" class="icon"></md-icon>Map
+          </md-button>
+        </md-item>
+        <md-item>
+          <md-button ng-click="ac.go('/contact')" class="md-button md-default-theme menuButton">
+            <md-icon md-svg-icon="svg-mail" class="icon"></md-icon>Contact
+          </md-button>
+        </md-item>
+      </md-list>
+    </md-sidenav>
+
+    
+    <md-content ng-view="" md-scroll-y="" flex="" class="md-padding ng-scope md-default-theme ng-scope" layout-fill>
+
+
+    </md-content>
+
+  <script src="./bower_components/angular/angular.js"></script>
+  <script src="./bower_components/angular-animate/angular-animate.js"></script>
+  <script src="./bower_components/angular-aria/angular-aria.js"></script>
+  <script src="./bower_components/angular-material/angular-material.js"></script>
+  <script src="./bower_components/angular-route/angular-route.js"></script>
+
+  <script src="./app.js"></script>
+  <script src="./config.js"></script>
+
+  <script src="./src/services/AchievementsDataService.js"></script>
+  <script src="./src/services/BackEndRequestService.js"></script>
+  <script src="./src/services/BackEndUrlService.js"></script>
+  <script src="./src/services/BuildsList.js"></script>
+  <script src="./src/services/MapsDataService.js"></script>
+  <script src="./src/services/PlayersDataService.js"></script>
+  <script src="./src/services/RankingService.js"></script>
+  <script src="./src/services/StatsDataService.js"></script>
+  <script src="./src/services/WorldMapService.js"></script>
+
+  <script src="./src/controllers/AppController.js"></script>
+  <script src="./src/controllers/AddPlayerController.js"></script>
+  <script src="./src/controllers/StatsController.js"></script>
+  <script src="./src/controllers/HomeController.js"></script>
+  <script src="./src/controllers/RankingController.js"></script>
+  <script src="./src/controllers/MapController.js"></script>
+  <script src="./src/controllers/ContactController.js"></script>
+  
+  <script src="./src/directives/divMap.js"></script>
+  <script src="./src/directives/achievementMap.js"></script>
+  <script src="./src/directives/stat.js"></script>
+  <script src="./src/directives/build.js"></script>
+  
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFA8lX_71B1gT5uVB10VJv3L_6WnK82Zk&sensor=false"></script>
+  <script src="./src/markerclusterer.js"></script>
+</body>
+</html>
