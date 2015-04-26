@@ -27,7 +27,7 @@ class MainController extends Controller
             ->checkIfPlayerExistInDatabase($profileUrl);
 
     $response = new JsonResponse();
-    $response->setContent($checkIfPlayerExistInDatabaseResponse);
+    $response->setData($checkIfPlayerExistInDatabaseResponse);
     $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
 
     return $response;
