@@ -201,7 +201,7 @@ class MainController extends Controller
     }
 
     $response = new JsonResponse();
-    $response->setContent($arrayPlayers);
+    $response->setData($arrayPlayers);
     $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
 
     return $response;
