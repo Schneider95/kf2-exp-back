@@ -290,7 +290,7 @@ class SteamRequestManager
   {
     $jsonUrl = $this->baseUrl . 'ISteamNews/GetNewsForApp/v0002/?';
     $jsonUrl .= 'appid=' . $this->appId;
-    $jsonUrl .= '&count=3&maxlength=400&format=json';
+    $jsonUrl .= '&count=3&maxlength=300&format=json';
 
     if ($this->checkLimitRequest()) {
       return 'The number of maximum request has been reached.';
@@ -451,9 +451,7 @@ class SteamRequestManager
     foreach ($jsonArray as $newsFromJson) {
 
       $repository = $this->em->getRepository('Kf2ExpAppBundle:SteamNews');
-
-      echo $newsFromJson['gid'] . '<br>';
-
+      
       $sn = $repository->findOneByGid($newsFromJson['gid']);
 
       if ($sn == null) {
