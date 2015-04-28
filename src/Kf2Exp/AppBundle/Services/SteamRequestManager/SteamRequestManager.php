@@ -9,6 +9,7 @@ use Kf2Exp\AppBundle\Entity\Achievement;
 use Kf2Exp\AppBundle\Entity\PlayerAchievement;
 use Kf2Exp\AppBundle\Entity\PlayerStat;
 use Kf2Exp\AppBundle\Entity\Player;
+use Kf2Exp\AppBundle\Entity\SteamNews;
 
 class SteamRequestManager{
 
@@ -303,6 +304,52 @@ class SteamRequestManager{
     }
   }
 
+
+  /** Get latest news from Steam
+   * @return
+   */
+  public function getLatestNewsFromSteam() {
+    $jsonUrl = $this->baseUrl . 'ISteamNews/GetNewsForApp/v0002/?';
+    $jsonUrl .= 'appid=' . $this->appId;
+    $jsonUrl .= '&count=3&maxlength=400&format=json';
+echo $jsonUrl;
+    if ($this->checkLimitRequest())
+    {
+      return 'The number of maximum request has been reached.';
+    }
+
+    $curlResult = $this->doCurlRequest($jsonUrl);
+
+    if ($curlResult['httpCode'] == 200)
+    {
+      $json = json_decode($curlResult['content'], true);
+
+      if ($json == null)
+      {
+        return 'Error while parsing Steam API response for retrieving latest news.';
+      }
+
+      if (isset($json["appnews"]["newsitems"]) == false)
+      {
+        return 'Error while parsing Steam API response for retrieving latest news.';
+      }
+
+      $jsonNews = $json["appnews"]["newsitems"];
+
+      return $jsonNews;
+    }
+
+    if ($curlResult['httpCode'] != 0)
+    {
+      return 'Error while request Steam API for retrieve latest news (HTTP Error ' . $curlResult['httpCode'] . ')';
+    }
+    else
+    {
+      return 'Failed to connect to Steam API to retrieve latest news.';
+    }
+  }
+
+
   /**
    * Check if we have reached the limit number of request to Steam Api 
    * @return boolean
@@ -438,6 +485,37 @@ class SteamRequestManager{
     $player->setNbAchievementsMaps($nbAchievementsMaps);
     $this->em->persist($player);
     $this->em->flush();
+  }
+
+  public function saveUnknownNews($jsonArray) 
+  {
+
+    foreach ($jsonArray as $newsFromJson) {
+
+      $repository = $this->em->getRepository('Kf2ExpAppBundle:SteamNews');
+
+      echo $newsFromJson['gid'] . '<br>';
+
+      $sn = $repository->findOneByGid($newsFromJson['gid']);
+
+      if ($sn == null) {
+        $steamNews = new SteamNews();
+	$steamNews->setGid($newsFromJson['gid']);
+	$steamNews->setTitle($newsFromJson['title']);
+	$steamNews->setUrl($newsFromJson['url']);
+	$steamNews->setAuthor($newsFromJson['gid']);
+	$steamNews->setContents($newsFromJson['contents']);
+
+	$date = new \DateTime();
+	$date->setTimestamp($newsFromJson['date']);
+	$steamNews->setDate($date);
+echo'persist';
+        $this->em->persist($steamNews);
+        $this->em->flush($steamNews);
+      }
+    }
+    
+
   }
 
   public function updateProfileData($steamId) {
