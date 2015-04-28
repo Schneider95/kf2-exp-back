@@ -1,6 +1,7 @@
 /nbproject/
 /web/bundles/
 /web/nb_curl.txt
+/web/cities.json
 /app/bootstrap*
 /app/cache/*
 /app/logs/*

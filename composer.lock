@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ccb49d6538ac1aa065371ed7578f73be",
+    "hash": "8620c3b93bd363677d35fa7de6ecbe8b",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1580,56 +1580,6 @@
             "time": "2015-01-27 12:45:16"
         },
         {
-            "name": "symfony/finder",
-            "version": "dev-master",
-            "target-dir": "Symfony/Component/Finder",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/Finder.git",
-                "reference": "64c8bafb8652c3a6ef092371269cdcd560072871"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Finder/zipball/64c8bafb8652c3a6ef092371269cdcd560072871",
-                "reference": "64c8bafb8652c3a6ef092371269cdcd560072871",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.9"
-            },
-            "require-dev": {
-                "symfony/phpunit-bridge": "~2.8|~3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Symfony\\Component\\Finder\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                },
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                }
-            ],
-            "description": "Symfony Finder Component",
-            "homepage": "http://symfony.com",
-            "time": "2015-04-10 07:31:54"
-        },
-        {
             "name": "symfony/monolog-bundle",
             "version": "v2.7.1",
             "source": {
@@ -1962,8 +1912,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "jms/serializer-bundle": 20,
-        "symfony/finder": 20
+        "jms/serializer-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
