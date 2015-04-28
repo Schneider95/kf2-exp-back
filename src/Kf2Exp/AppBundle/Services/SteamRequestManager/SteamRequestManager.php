@@ -11,13 +11,15 @@ use Kf2Exp\AppBundle\Entity\PlayerStat;
 use Kf2Exp\AppBundle\Entity\Player;
 use Kf2Exp\AppBundle\Entity\SteamNews;
 
-class SteamRequestManager{
+class SteamRequestManager
+{
 
   protected $em;
   protected $baseUrl = 'http://api.steampowered.com/';
   protected $appId = '232090';
 
-  public function __construct(\Doctrine\ORM\EntityManager $em, $rootDir, $steamApiKey, $maxRequest, $playerCacheSeconds) {
+  public function __construct(\Doctrine\ORM\EntityManager $em, $rootDir, $steamApiKey, $maxRequest, $playerCacheSeconds) 
+  {
     $this->em = $em;
     $this->rootDir = $rootDir;
     $this->steamApiKey = $steamApiKey;
@@ -31,10 +33,9 @@ class SteamRequestManager{
    * @param string $json
    * @return array
    */
-  public function addInexistingStats($json) {
-
-    if (isset($json["playerstats"]["stats"]))
-    {
+  public function addInexistingStats($json) 
+  {
+    if (isset($json["playerstats"]["stats"])) {
 
       $playerStat = array();
       $existingStat = array();
@@ -42,20 +43,17 @@ class SteamRequestManager{
       $repository = $this->em->getRepository('Kf2ExpAppBundle:Stat');
       $listeStat = $repository->findAll();
 
-      foreach ($listeStat as $s)
-      {
+      foreach ($listeStat as $s) {
         $existingStat[] = $s->getStatName();
       }
 
-      foreach ($json["playerstats"]["stats"] as $s)
-      {
+      foreach ($json["playerstats"]["stats"] as $s) {
         $playerStat[] = $s['name'];
       }
 
       $statToAdd = array_diff($playerStat, $existingStat);
 
-      foreach ($statToAdd as $s)
-      {
+      foreach ($statToAdd as $s) {
 
         $stat = new Stat();
         $stat->setStatName($s);
@@ -74,27 +72,25 @@ class SteamRequestManager{
    * @param string $json
    * @return array
    */
-  public function addInexistingAchievements($json) {
+  public function addInexistingAchievements($json) 
+  {
     $playerAchievements = array();
     $existingAchievements = array();
 
     $repository = $this->em->getRepository('Kf2ExpAppBundle:Achievement');
     $listeAchievements = $repository->findAll();
 
-    foreach ($listeAchievements as $a)
-    {
+    foreach ($listeAchievements as $a) {
       $existingAchievements[] = $a->getAchievementName();
     }
 
-    foreach ($json["playerstats"]["achievements"] as $a)
-    {
+    foreach ($json["playerstats"]["achievements"] as $a) {
       $playerAchievements[] = $a['name'];
     }
 
     $achievementToAdd = array_diff($playerAchievements, $existingAchievements);
 
-    foreach ($achievementToAdd as $a)
-    {
+    foreach ($achievementToAdd as $a) {
       $achievement = new Achievement();
       $achievement->setAchievementName($a);
       $achievement->setVisibleAchievementName($a);
@@ -109,13 +105,13 @@ class SteamRequestManager{
    * @param string $profileUrl
    * @return int
    */
-  public function checkIfPlayerExistInDatabase($profileUrl) {
+  public function checkIfPlayerExistInDatabase($profileUrl) 
+  {
     $repository = $this->em->getRepository('Kf2ExpAppBundle:Player');
 
     $p = $repository->findOneByProfileUrl($profileUrl);
 
-    if ($p != null)
-    {
+    if ($p != null) {
       return $p->getId();
     }
 
@@ -127,21 +123,21 @@ class SteamRequestManager{
    * @param string $profileUrl
    * @return int
    */
-  public function checkIfPlayerExistOnSteam($profileUrl) {
+  public function checkIfPlayerExistOnSteam($profileUrl) 
+  {
 
     $profileUrl = rtrim($profileUrl, '/');
     $profileUrl .= '/?xml=1';
 
     $curlResult = $this->doCurlRequest($profileUrl);
 
-    if ($curlResult['httpCode'] == 200)
-    {
+    if ($curlResult['httpCode'] == 200) {
+
       $xml = simplexml_load_string($curlResult['content']);
 
-      if (count($xml) != 0)
-      {
-        if (isset($xml->steamID64) && !empty($xml->steamID64))
-        {
+      if (count($xml) != 0) {
+
+        if (isset($xml->steamID64) && !empty($xml->steamID64)) {
           return (string) $xml->steamID64;
         }
 
@@ -159,7 +155,8 @@ class SteamRequestManager{
    * @param string $steamId
    * @return mixed
    */
-  public function checkIfPlayerHaveGame($steamId) {
+  public function checkIfPlayerHaveGame($steamId) 
+  {
 
     $jsonUrl = $this->baseUrl . 'ISteamUserStats/GetUserStatsForGame/v0002/?';
     $jsonUrl .= 'appid=' . $this->appId;
@@ -167,39 +164,31 @@ class SteamRequestManager{
 
     $jsonUrl .= '&steamid=' . $steamId;
 
-    if ($this->checkLimitRequest())
-    {
+    if ($this->checkLimitRequest()) {
       return 'The number of maximum request has been reached.';
     }
 
     $curlResult = $this->doCurlRequest($jsonUrl);
 
-    if ($curlResult['httpCode'] == 200)
-    {
+    if ($curlResult['httpCode'] == 200) {
 
       $json = json_decode($curlResult['content'], true);
 
-      if ($json == null)
-      {
+      if ($json == null) {
         return 'Error while parsing Steam API response for retrieving if the player have the game';
       }
 
-      if (!empty($json))
-      {
+      if (!empty($json)) {
+
         if ((!empty($json['playerstats']['steamID'])) &&
                 (!empty($json['playerstats']['achievements'])) &&
-                (!empty($json['playerstats']['stats'])))
-        {
+                (!empty($json['playerstats']['stats']))) {
           return true;
-        }
-        else
-        {
+        } else {
           return false;
         }
       }
-    }
-    else
-    {
+    } else {
       return 'Error while request Steam API for retrieving if the player have the game (HTTP Error ' . $curlResult['httpCode'] . ')';
     }
   }
@@ -209,29 +198,24 @@ class SteamRequestManager{
    * @param type $steamId
    * @return boolean
    */
-  public function checkIfPlayerMustBeUpdated($steamId) {
+  public function checkIfPlayerMustBeUpdated($steamId) 
+  {
     $repository = $this->em->getRepository('Kf2ExpAppBundle:Player');
 
     $player = $repository->findOneBySteamId($steamId);
 
-    if ($player != null)
-    {
+    if ($player != null) {
       $timeUpdate = $player->getLastUpdateTime()->getTimestamp();
       $timeNow = time();
       $secondsCache = 60 * 60 * $this->hoursCache;
       $soustraction = $timeNow - $secondsCache;
 
-      if ($soustraction > $timeUpdate)
-      {
+      if ($soustraction > $timeUpdate) {
         return true;
-      }
-      else
-      {
+      } else {
         return false;
       }
-    }
-    else
-    {
+    } else {
       return false;
     }
   }
@@ -242,8 +226,8 @@ class SteamRequestManager{
    * @param type $url
    * @return array
    */
-  public function doCurlRequest($url) {
-
+  public function doCurlRequest($url)
+  {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -263,29 +247,26 @@ class SteamRequestManager{
    * @param type $steamId
    * @return
    */
-  public function getProfileData($steamId) {
+  public function getProfileData($steamId) 
+  {
     $jsonUrl = $this->baseUrl . 'ISteamUser/GetPlayerSummaries/v0002/?';
     $jsonUrl .= 'key=' . $this->steamApiKey;
     $jsonUrl .= '&steamids=' . $steamId;
 
-    if ($this->checkLimitRequest())
-    {
+    if ($this->checkLimitRequest()) {
       return 'The number of maximum request has been reached.';
     }
 
     $curlResult = $this->doCurlRequest($jsonUrl);
 
-    if ($curlResult['httpCode'] == 200)
-    {
+    if ($curlResult['httpCode'] == 200) {
       $json = json_decode($curlResult['content'], true);
 
-      if ($json == null)
-      {
+      if ($json == null) {
         return 'Error while parsing Steam API response for retrieving player profile data.';
       }
 
-      if (isset($json["response"]["players"][0]) == false)
-      {
+      if (isset($json["response"]["players"][0]) == false) {
         return 'Error while parsing Steam API response for retrieving player profile data.';
       }
 
@@ -294,12 +275,9 @@ class SteamRequestManager{
       return $jsonPlayer;
     }
 
-    if ($curlResult['httpCode'] != 0)
-    {
+    if ($curlResult['httpCode'] != 0) {
       return 'Error while request Steam API for retrieve player profile (HTTP Error ' . $curlResult['httpCode'] . ')';
-    }
-    else
-    {
+    } else {
       return 'Failed to connect to Steam API to retrieve player profile.';
     }
   }
@@ -308,29 +286,27 @@ class SteamRequestManager{
   /** Get latest news from Steam
    * @return
    */
-  public function getLatestNewsFromSteam() {
+  public function getLatestNewsFromSteam() 
+  {
     $jsonUrl = $this->baseUrl . 'ISteamNews/GetNewsForApp/v0002/?';
     $jsonUrl .= 'appid=' . $this->appId;
     $jsonUrl .= '&count=3&maxlength=400&format=json';
-echo $jsonUrl;
-    if ($this->checkLimitRequest())
-    {
+
+    if ($this->checkLimitRequest()) {
       return 'The number of maximum request has been reached.';
     }
 
     $curlResult = $this->doCurlRequest($jsonUrl);
 
-    if ($curlResult['httpCode'] == 200)
-    {
+    if ($curlResult['httpCode'] == 200) {
+
       $json = json_decode($curlResult['content'], true);
 
-      if ($json == null)
-      {
+      if ($json == null) {
         return 'Error while parsing Steam API response for retrieving latest news.';
       }
 
-      if (isset($json["appnews"]["newsitems"]) == false)
-      {
+      if (isset($json["appnews"]["newsitems"]) == false) {
         return 'Error while parsing Steam API response for retrieving latest news.';
       }
 
@@ -339,12 +315,9 @@ echo $jsonUrl;
       return $jsonNews;
     }
 
-    if ($curlResult['httpCode'] != 0)
-    {
+    if ($curlResult['httpCode'] != 0) {
       return 'Error while request Steam API for retrieve latest news (HTTP Error ' . $curlResult['httpCode'] . ')';
-    }
-    else
-    {
+    } else {
       return 'Failed to connect to Steam API to retrieve latest news.';
     }
   }
@@ -354,15 +327,13 @@ echo $jsonUrl;
    * Check if we have reached the limit number of request to Steam Api 
    * @return boolean
    */
-  public function checkLimitRequest() {
+  public function checkLimitRequest() 
+  {
     $nbCurlRequest = file_get_contents($this->rootDir . '/../web/nb_curl.txt');
 
-    if ($nbCurlRequest > $this->maxRequest)
-    {
+    if ($nbCurlRequest > $this->maxRequest) {
       return true;
-    }
-    else
-    {
+    } else {
       return false;
     }
   }
@@ -379,8 +350,7 @@ echo $jsonUrl;
     $repository = $this->em->getRepository('Kf2ExpAppBundle:Player');
     $player = $repository->findOneBySteamId($steamId);
 
-    foreach ($json["playerstats"]["stats"] as $playerStatsJson)
-    {
+    foreach ($json["playerstats"]["stats"] as $playerStatsJson) {
 
       $repository = $this->em->getRepository('Kf2ExpAppBundle:Stat');
       $stat = $repository->findOneByStatName($playerStatsJson['name']);
@@ -390,20 +360,16 @@ echo $jsonUrl;
       $playerStatBase = $repository->findOneBy(array('player' => $player,
           'stat' => $stat));
 
-      if ($playerStatBase == null)
-      {
+      if ($playerStatBase == null) {
 
         $playerStat = new PlayerStat();
         $playerStat->setPlayer($player);
         $playerStat->setStat($stat);
         $playerStat->setValue($playerStatsJson['value']);
         $this->em->persist($playerStat);
-      }
-      else
-      {
+      } else {
 
-        if ($playerStatBase->getValue() != $playerStatsJson['value'])
-        {
+        if ($playerStatBase->getValue() != $playerStatsJson['value']) {
           $playerStatBase->setValue($playerStatsJson['value']);
           $this->em->persist($playerStatBase);
         }
@@ -420,27 +386,23 @@ echo $jsonUrl;
    * @param string $steamId
    * @return array
    */
-  public function manageAchievementsPlayer($json, $steamId) {
-
+  public function manageAchievementsPlayer($json, $steamId) 
+  {
     $repository = $this->em->getRepository('Kf2ExpAppBundle:Player');
     $player = $repository->findOneBySteamId($steamId);
 
     $nbAchievementsMaps = 0;
 
-
-    // recuperer ici tout les succes de maps dans la base, et calculer combien le joueur en a reussi
-
     $maps = $this->em->getRepository('Kf2ExpAppBundle:Achievement')
             ->getMapsList();
 
-    foreach ($json["playerstats"]["achievements"] as $playerAchievementsJson)
-    {
-      foreach ($maps as $map)
-      {
-        foreach ($map as $difficultyKey => $difficultyValue)
-        {
-          if ($playerAchievementsJson['name'] == $difficultyValue)
-          {
+    foreach ($json["playerstats"]["achievements"] as $playerAchievementsJson) {
+
+      foreach ($maps as $map) {
+
+        foreach ($map as $difficultyKey => $difficultyValue) {
+
+          if ($playerAchievementsJson['name'] == $difficultyValue) {
             $nbAchievementsMaps++;
           }
         }
@@ -460,19 +422,15 @@ echo $jsonUrl;
           'achievement' => $achievement));
 
       // if the player didn't had this achievement, we had it
-      if ($playerAchievementBase == null)
-      {
+      if ($playerAchievementBase == null) {
         $playerAchievement = new PlayerAchievement();
         $playerAchievement->setPlayer($player);
         $playerAchievement->setAchievement($achievement);
         $playerAchievement->setValue($playerAchievementsJson['achieved']);
         $this->em->persist($playerAchievement);
-      }
-      else
-      {
+      } else {
         if ($playerAchievementBase->getValue() !=
-                $playerAchievementsJson['achieved'])
-        {
+                $playerAchievementsJson['achieved']) {
           $playerAchievementBase->setValue($playerAchievementsJson['achieved']);
           $this->em->persist($playerAchievementBase);
         }
@@ -509,32 +467,27 @@ echo $jsonUrl;
 	$date = new \DateTime();
 	$date->setTimestamp($newsFromJson['date']);
 	$steamNews->setDate($date);
-echo'persist';
+
         $this->em->persist($steamNews);
         $this->em->flush($steamNews);
       }
     }
-    
-
   }
 
-  public function updateProfileData($steamId) {
+  public function updateProfileData($steamId) 
+  {
     $getProfileDataResult = $this->getProfileData($steamId);
 
-    if (is_array($getProfileDataResult) == false)
-    {
+    if (is_array($getProfileDataResult) == false) {
       return $getProfileDataResult;
     }
 
     $repository = $this->em->getRepository('Kf2ExpAppBundle:Player');
     $p = $repository->findOneBySteamId($steamId);
 
-    if ($p == null)
-    {
+    if ($p == null) {
       $player = new Player();
-    }
-    else
-    {
+    } else {
       $player = $p;
     }
 
@@ -551,21 +504,15 @@ echo'persist';
     $player->setPersonaState($jsonPlayer["personastate"]);
     $player->setProfileState($jsonPlayer["profilestate"]);
 
-    if (!empty($jsonPlayer["realname"]))
-    {
+    if (!empty($jsonPlayer["realname"])) {
       $player->setRealName($jsonPlayer["realname"]);
-    }
-    else
-    {
+    } else {
       $player->setRealName('');
     }
 
-    if (!empty($jsonPlayer["primaryclanid"]))
-    {
+    if (!empty($jsonPlayer["primaryclanid"])) {
       $player->setPrimaryClanId($jsonPlayer["primaryclanid"]);
-    }
-    else
-    {
+    } else {
       $player->setPrimaryClanId('');
     }
 
@@ -573,14 +520,11 @@ echo'persist';
     $date->setTimeStamp($jsonPlayer["lastlogoff"]);
     $player->setLastLogOff($date);
 
-    if (!empty($jsonPlayer["timecreated"]))
-    {
+    if (!empty($jsonPlayer["timecreated"])) {
       $date = new \DateTime();
       $date->setTimeStamp($jsonPlayer["timecreated"]);
       $player->setTimeCreated($date);
-    }
-    else
-    {
+    } else {
       $date = new \DateTime();
       $date->setTimeStamp(0);
       $player->setTimeCreated($date);
@@ -596,59 +540,51 @@ echo'persist';
     $player->setNbAchievements(0);
     $player->setNbAchievementsMaps(0);
 
-    if (!empty($jsonPlayer["loccountrycode"]))
-    {
+    if (!empty($jsonPlayer["loccountrycode"])) {
       $repository = $this->em
               ->getRepository('Kf2ExpAppBundle:Country');
       $country = $repository
               ->findOneByCountryId($jsonPlayer["loccountrycode"]);
 
-      if ($country != null)
-      {
+      if ($country != null) {
         $player->setCountry($country);
       }
     }
 
     if (!empty($jsonPlayer["loccountrycode"]) &&
-            !empty($jsonPlayer["locstatecode"]))
-    {
+            !empty($jsonPlayer["locstatecode"])) {
+
       $repository = $this->em->getRepository('Kf2ExpAppBundle:State');
       $state = $repository
               ->findOneBy(
               array('country' => $country,
                   'stateId' => $jsonPlayer["locstatecode"]));
 
-      if ($country != null)
-      {
+      if ($country != null) {
         $player->setState($state);
       }
     }
 
     if (!empty($jsonPlayer["loccountrycode"]) &&
             !empty($jsonPlayer["locstatecode"]) &&
-            !empty($jsonPlayer["loccityid"]))
-    {
+            !empty($jsonPlayer["loccityid"])) {
+
       $repository = $this->em
               ->getRepository('Kf2ExpAppBundle:City');
       $city = $repository
               ->findOneByCityId($jsonPlayer["loccityid"]);
 
-      if ($country != null)
-      {
+      if ($country != null) {
         $player->setCity($city);
       }
     }
 
-
-    if ($p == null)
-    {
+    if ($p == null) {
       $date = new \DateTime();
       $date->setTimeStamp(0);
       $player->setLastUpdateTime($date);
       $this->em->persist($player);
-    }
-    else
-    {
+    } else {
       $this->em->merge($player);
     }
 
@@ -663,43 +599,35 @@ echo'persist';
    * @return 
    */
 
-  public function updateStatsData($steamId) {
+  public function updateStatsData($steamId) 
+  {
     $jsonUrl = $this->baseUrl . 'ISteamUserStats/GetUserStatsForGame/v0002/?';
     $jsonUrl .= 'appid=' . $this->appId;
     $jsonUrl .= '&key=' . $this->steamApiKey . '&steamid=' . $steamId;
 
-    if ($this->checkLimitRequest())
-    {
+    if ($this->checkLimitRequest()) {
       return 'The number of maximum request has been reached';
     }
 
     $curlResult = $this->doCurlRequest($jsonUrl);
 
-    if ($curlResult['httpCode'] == 200)
-    {
+    if ($curlResult['httpCode'] == 200) {
 
       $json = json_decode($curlResult['content'], true);
 
-      if ($json == null)
-      {
+      if ($json == null) {
         return 'Error while parsing return from Steam API';
       }
 
-      if (isset($json["playerstats"]["stats"]))
-      {
+      if (isset($json["playerstats"]["stats"])) {
         $this->addInexistingStats($json);
-      }
-      else
-      {
+      } else {
         return 'No stats available for this player.';
       }
 
-      if (isset($json["playerstats"]["achievements"]))
-      {
+      if (isset($json["playerstats"]["achievements"])) {
         $this->addInexistingAchievements($json);
-      }
-      else
-      {
+      } else {
         return 'No achievements available for this player.';
       }
 
@@ -713,15 +641,10 @@ echo'persist';
       $this->em->flush();
 
       return true;
-    }
-    else
-    {
-      if ($curlResult['httpCode'] != 0)
-      {
+    } else {
+      if ($curlResult['httpCode'] != 0) {
         return 'Error while request Steam API for retrieve player stats (HTTP Error ' . $curlResult['httpCode'] . ')';
-      }
-      else
-      {
+      } else {
         return 'Failed to connect to Steam API to retrieve player stats.';
       }
     }
@@ -732,24 +655,22 @@ echo'persist';
    * @param type $steamId
    * @return string|boolean
    */
-  public function updateTimePlayed($steamId) {
+  public function updateTimePlayed($steamId) 
+  {
     $jsonUrl = $this->baseUrl . 'IPlayerService/GetOwnedGames/v0001/?';
     $jsonUrl .= 'key=' . $this->steamApiKey;
     $jsonUrl .= '&steamid=' . $steamId . '&format=json';
 
-    if ($this->checkLimitRequest())
-    {
+    if ($this->checkLimitRequest()) {
       return 'The number of maximum request has been reached.';
     }
 
     $curlResult = $this->doCurlRequest($jsonUrl);
 
-    if ($curlResult['httpCode'] == 200)
-    {
+    if ($curlResult['httpCode'] == 200) {
       $json = json_decode($curlResult['content'], true);
 
-      if ($json == null)
-      {
+      if ($json == null) {
         return 'Error while parsing return from Steam API';
       }
 
@@ -757,25 +678,19 @@ echo'persist';
       $player = $repository->findOneBySteamId($steamId);
       $timePlayed = 0;
 
-      if (!empty($json["response"]))
-      {
+      if (!empty($json["response"]))  {
 
         $i = -1;
 
-        do
-        {
+        do {
           $i++;
-        }
-        while ($json["response"]["games"][$i]["appid"] != $this->appId &&
+        } while ($json["response"]["games"][$i]["appid"] != $this->appId &&
         $i < count($json["response"]["games"]));
 
-        if ($json["response"]["games"][$i]["playtime_forever"] != 0)
-        {
+        if ($json["response"]["games"][$i]["playtime_forever"] != 0) {
           $timePlayed = $json["response"]["games"][$i]["playtime_forever"];
         }
-      }
-      else
-      {
+      } else {
         $timePlayed = '0';
       }
 
@@ -785,15 +700,10 @@ echo'persist';
       $this->em->flush();
 
       return true;
-    }
-    else
-    {
-      if ($curlResult['httpCode'] != 0)
-      {
+    } else {
+      if ($curlResult['httpCode'] != 0) {
         return 'Error while request Steam API for retrieve player time played (HTTP Error ' . $curlResult['httpCode'] . ')';
-      }
-      else
-      {
+      } else {
         return 'Failed to connect to Steam API to retrieve player stats.';
       }
     }
