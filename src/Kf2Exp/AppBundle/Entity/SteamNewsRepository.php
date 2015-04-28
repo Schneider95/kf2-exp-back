@@ -12,4 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class SteamNewsRepository extends EntityRepository
 {
+  public function findLatestNews($limit = 3) {
+   
+    $qb = $this->createQueryBuilder('n');
+    $qb->select('n')
+      ->orderBy('n.date', 'DESC')
+      ->setFirstResult(0)
+      ->setMaxResults($limit);
+
+    $arrayNews = $qb->getQuery()
+            ->getArrayResult();
+
+    return $arrayNews;
+  }
 }

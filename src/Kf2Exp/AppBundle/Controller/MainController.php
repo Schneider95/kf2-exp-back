@@ -111,6 +111,27 @@ class MainController extends Controller
   }
 
   /**
+   * @Route("/getLatestNews")
+   * @Method("GET")
+   */
+  public function getLatestNewsAction()
+  {
+    $em = $this->getDoctrine()->getManager();
+
+    $news = $em->getRepository('Kf2ExpAppBundle:SteamNews')
+            ->findLatestNews(3);
+
+    $serializer = $this->container->get('serializer');
+    $json = $serializer->serialize($news, 'json');
+
+    $response = new JsonResponse();
+    $response->setContent($json);
+    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
+
+    return $response;
+  }
+
+  /**
    * @Route("/getLastUpdatedPlayers")
    * @Method("GET")
    */
