@@ -13,7 +13,7 @@ class ResetNbCurlCommand extends ContainerAwareCommand{
   }
 
   protected function execute(InputInterface $input, OutputInterface $output) {
-    file_put_contents('web/nb_curl.txt', '0');
+    file_put_contents($this->getContainer()->getParameter('nb_curl_txt_location') . 'nb_curl.txt', '0');
   }
 
 }

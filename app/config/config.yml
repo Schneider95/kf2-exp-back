@@ -1,7 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
-    - { resource: settings.yml }
+    - { resource: "@Kf2ExpAppBundle/Resources/config/settings.yml" }
     
 framework:
     #esi:             ~

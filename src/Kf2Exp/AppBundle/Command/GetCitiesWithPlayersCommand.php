@@ -1,7 +1,5 @@
 <?php
 
-// src/Kf2Exp/MainBundle/Command/GetCitiesWithPlayersCommand.php
-
 namespace Kf2Exp\AppBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
@@ -33,7 +31,7 @@ class GetCitiesWithPlayersCommand extends ContainerAwareCommand{
     $fetch = $stmt->fetchAll();
     $json = json_encode($fetch);
 
-    file_put_contents('web/cities.json', $json);
+    file_put_contents($this->getContainer()->getParameter('cities_json_location') . 'cities.json', $json);
 
     return $json;
   }
