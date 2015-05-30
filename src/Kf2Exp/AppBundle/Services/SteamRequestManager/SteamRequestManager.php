@@ -394,7 +394,7 @@ class SteamRequestManager
     $nbAchievementsMaps = 0;
 
     $maps = $this->em->getRepository('Kf2ExpAppBundle:Achievement')
-            ->getMapsList();
+            ->getAchievementsMapsList();
 
     foreach ($json["playerstats"]["achievements"] as $playerAchievementsJson) {
 

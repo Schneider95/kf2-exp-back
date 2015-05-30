@@ -75,15 +75,36 @@ class MainController extends Controller
   }
 
   /**
-   * @Route("/getAchievementsList")
+   * @Route("/getAchievementsClassicList")
    * @Method("GET")
    */
-  public function getAchievementsListAction()
+  public function getAchievementsClassicListAction()
   {
     $em = $this->getDoctrine()->getManager();
 
     $stats = $em->getRepository('Kf2ExpAppBundle:Achievement')
-            ->findAll();
+            ->getAchievementsClassicList();
+
+    $serializer = $this->container->get('serializer');
+    $json = $serializer->serialize($stats, 'json');
+
+    $response = new JsonResponse();
+    $response->setContent($json);
+    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
+
+    return $response;
+  }
+  
+  /**
+   * @Route("/getAchievementsMapsList")
+   * @Method("GET")
+   */
+  public function getAchievementsMapsListAction()
+  {
+    $em = $this->getDoctrine()->getManager();
+
+    $stats = $em->getRepository('Kf2ExpAppBundle:Achievement')
+            ->getAchievementsMapsList();
 
     $serializer = $this->container->get('serializer');
     $json = $serializer->serialize($stats, 'json');
@@ -283,27 +304,6 @@ class MainController extends Controller
 
     $serializer = $this->container->get('serializer');
     $json = $serializer->serialize($stats, 'json');
-
-    $response = new JsonResponse();
-    $response->setContent($json);
-    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
-
-    return $response;
-  }
-
-  /**
-   * @Route("/getMapsList")
-   * @Method("GET")
-   */
-  public function getMapsListAction()
-  {
-    $em = $this->getDoctrine()->getManager();
-
-    $maps = $em->getRepository('Kf2ExpAppBundle:Achievement')
-            ->getMapsList();
-
-    $serializer = $this->container->get('serializer');
-    $json = $serializer->serialize($maps, 'json');
 
     $response = new JsonResponse();
     $response->setContent($json);
