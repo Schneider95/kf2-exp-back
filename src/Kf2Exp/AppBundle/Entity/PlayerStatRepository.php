@@ -12,14 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class PlayerStatRepository extends EntityRepository{
 
-  public function getStatsRanking($statName, $nbPlayerLoaded, $nbPlayerToLoad) {
+  public function getStatsRanking($statName) {
     $qb = $this->createQueryBuilder('ps');
     $qb->select('ps')
             ->leftJoin('ps.stat', 's')
             ->where('s.statName = :s_stat_name')
             ->setParameter('s_stat_name', $statName)
-            ->setMaxResults($nbPlayerToLoad)
-            ->setFirstResult($nbPlayerLoaded)
             ->orderBy('ps.value', 'DESC');
 
     $playersStats = $qb->getQuery()

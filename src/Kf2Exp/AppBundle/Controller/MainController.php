@@ -346,11 +346,9 @@ class MainController extends Controller
       return $response;
     }
 
-    $nbPlayerLoaded = $request->query->get('nbPlayerLoaded');
-    $nbPlayerToLoad = $request->query->get('nbPlayerToLoad');
 
     $playerStats = $em->getRepository('Kf2ExpAppBundle:PlayerStat')
-            ->getStatsRanking($statName, $nbPlayerLoaded, $nbPlayerToLoad);
+            ->getStatsRanking($statName);
 
     $response->setData($playerStats);
     return $response;
