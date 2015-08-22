@@ -332,21 +332,6 @@ class MainController extends Controller
       return $response;
     }
 
-    if ($request->query->get('nbPlayerLoaded') == '' ||
-            is_numeric($request->query->get('nbPlayerLoaded')) == false) {
-
-      $response->setContent('The GET parameter nbPlayerLoaded is mandatory and must be a numeric.');
-      return $response;
-    }
-
-    if ($request->query->get('nbPlayerToLoad') == '' ||
-            is_numeric($request->query->get('nbPlayerToLoad')) == false) {
-
-      $response->setContent('The GET parameter nbPlayerToLoad is mandatory and must be a numeric.');
-      return $response;
-    }
-
-
     $playerStats = $em->getRepository('Kf2ExpAppBundle:PlayerStat')
             ->getStatsRanking($statName);
 
