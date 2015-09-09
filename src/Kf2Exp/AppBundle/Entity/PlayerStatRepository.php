@@ -16,6 +16,8 @@ class PlayerStatRepository extends EntityRepository{
     $qb = $this->createQueryBuilder('ps');
     $qb->select('ps')
             ->leftJoin('ps.stat', 's')
+            ->leftJoin('ps.player', 'p')
+            ->leftJoin('p.country', 'c')
             ->where('s.statName = :s_stat_name')
             ->setParameter('s_stat_name', $statName)
             ->orderBy('ps.value', 'DESC');
@@ -27,14 +29,22 @@ class PlayerStatRepository extends EntityRepository{
 
     foreach ($playersStats as $playersStat)
     {
+      if (null === $playersStat->getPlayer()->getCountry()) {
+        $country = null;
+      } else {
+      	$country = $playersStat->getPlayer()->getCountry()->getCountryName();
+      }
+
       $array[] = array(
-          'playerId' => $playersStat->getPlayer()->getId(),
-          'steamId' => $playersStat->getPlayer()->getSteamId(),
-          'steamName' => $playersStat->getPlayer()->getSteamName(),
-          'value' => number_format($playersStat->getValue()));
+        'playerId' => $playersStat->getPlayer()->getId(),
+        'steamId' => $playersStat->getPlayer()->getSteamId(),
+        'steamName' => $playersStat->getPlayer()->getSteamName(),
+        'value' => number_format($playersStat->getValue()),
+        'country' => $country,
+        'timePlayed' => $playersStat->getPlayer()->getTimePlayed()
+      );
     }
 
     return $array;
   }
-
 }
