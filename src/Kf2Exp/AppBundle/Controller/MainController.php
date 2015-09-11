@@ -300,7 +300,11 @@ class MainController extends Controller
     $em = $this->getDoctrine()->getManager();
 
     $stats = $em->getRepository('Kf2ExpAppBundle:Stat')
-            ->findByEnabled(1);
+      ->findBy(array(
+        'enabled' => 1
+      ), array(
+        'visibleStatName' => 'ASC'
+      ));
 
     $serializer = $this->container->get('serializer');
     $json = $serializer->serialize($stats, 'json');
