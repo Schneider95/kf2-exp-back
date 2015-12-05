@@ -38,6 +38,31 @@ class AchievementRepository extends EntityRepository
     return $results;
   }
   
+  public function getAchievementsPerkDifficultyList()
+  {
+    $qb = $this->createQueryBuilder('a');
+    $qb->select('a')
+        ->where('a.enabled = 1')
+        ->andWhere('a.perk IS NOT NULL')
+        ->orderBy('a.perk');
+
+    $achievementPerkDifficulties = $qb->getQuery()
+          ->getResult();
+
+    $results = array();
+
+    foreach ($achievementPerkDifficulties as $achievement) {
+      
+      if (empty($results[$achievement->getPerk()])) {
+        $results[$achievement->getPerk()] = array();
+      }
+
+      $results[$achievement->getPerk()][$achievement->getDifficulty()] = $achievement->getAchievementName();
+    }
+
+    return $results;
+  }
+  
   public function getAchievementsClassicList()
   {
     $qb = $this->createQueryBuilder('a');

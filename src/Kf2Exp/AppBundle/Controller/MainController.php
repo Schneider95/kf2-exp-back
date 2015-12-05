@@ -115,6 +115,27 @@ class MainController extends Controller
 
     return $response;
   }
+  
+  /**
+   * @Route("/getAchievementsPerkDifficultyList")
+   * @Method("GET")
+   */
+  public function getAchievementsPerkDifficultyListAction()
+  {
+    $em = $this->getDoctrine()->getManager();
+
+    $stats = $em->getRepository('Kf2ExpAppBundle:Achievement')
+            ->getAchievementsPerkDifficultyList();
+
+    $serializer = $this->container->get('serializer');
+    $json = $serializer->serialize($stats, 'json');
+
+    $response = new JsonResponse();
+    $response->setContent($json);
+    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
+
+    return $response;
+  }
 
   /**
    * @Route("/getCitiesWithPlayers")

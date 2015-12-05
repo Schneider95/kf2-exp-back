@@ -45,6 +45,13 @@ class Achievement{
   /**
    * @var string
    *
+   * @ORM\Column(name="perk", type="string", nullable=true)
+   */
+  private $perk;
+  
+  /**
+   * @var string
+   *
    * @ORM\Column(name="difficulty", type="string", length=255, nullable=true)
    */
   private $difficulty;
@@ -55,7 +62,7 @@ class Achievement{
    * @ORM\Column(name="achievementMap", type="boolean", nullable=true)
    */
   private $achievementMap;
-
+  
   /**
    * @var boolean
    *
@@ -132,4 +139,100 @@ class Achievement{
     return $this->difficulty;
   }
 
+
+    /**
+     * Set mapName
+     *
+     * @param string $mapName
+     * @return Achievement
+     */
+    public function setMapName($mapName)
+    {
+        $this->mapName = $mapName;
+
+        return $this;
+    }
+
+    /**
+     * Set difficulty
+     *
+     * @param string $difficulty
+     * @return Achievement
+     */
+    public function setDifficulty($difficulty)
+    {
+        $this->difficulty = $difficulty;
+
+        return $this;
+    }
+
+    /**
+     * Set achievementMap
+     *
+     * @param boolean $achievementMap
+     * @return Achievement
+     */
+    public function setAchievementMap($achievementMap)
+    {
+        $this->achievementMap = $achievementMap;
+
+        return $this;
+    }
+
+    /**
+     * Get achievementMap
+     *
+     * @return boolean 
+     */
+    public function getAchievementMap()
+    {
+        return $this->achievementMap;
+    }
+
+
+    /**
+     * Set enabled
+     *
+     * @param boolean $enabled
+     * @return Achievement
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    /**
+     * Get enabled
+     *
+     * @return boolean 
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * Set perk
+     *
+     * @param string $perk
+     * @return Achievement
+     */
+    public function setPerk($perk)
+    {
+        $this->perk = $perk;
+
+        return $this;
+    }
+
+    /**
+     * Get perk
+     *
+     * @return string 
+     */
+    public function getPerk()
+    {
+        return $this->perk;
+    }
 }
