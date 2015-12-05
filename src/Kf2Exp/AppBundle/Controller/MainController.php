@@ -28,7 +28,6 @@ class MainController extends Controller
 
     $response = new JsonResponse();
     $response->setData($checkIfPlayerExistInDatabaseResponse);
-    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
 
     return $response;
   }
@@ -49,7 +48,6 @@ class MainController extends Controller
 
     $response = new JsonResponse();
     $response->setData($checkIfPlayerExistOnSteamResponse);
-    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
 
     return $response;
   }
@@ -69,7 +67,6 @@ class MainController extends Controller
 
     $response = new JsonResponse();
     $response->setData($checkIfPlayerHaveGameResponse);
-    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
 
     return $response;
   }
@@ -90,7 +87,6 @@ class MainController extends Controller
 
     $response = new JsonResponse();
     $response->setContent($json);
-    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
 
     return $response;
   }
@@ -111,7 +107,6 @@ class MainController extends Controller
 
     $response = new JsonResponse();
     $response->setContent($json);
-    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
 
     return $response;
   }
@@ -132,7 +127,6 @@ class MainController extends Controller
 
     $response = new JsonResponse();
     $response->setContent($json);
-    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
 
     return $response;
   }
@@ -147,7 +141,6 @@ class MainController extends Controller
 
     $response = new JsonResponse();
     $response->setContent($content);
-    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
 
     return $response;
   }
@@ -168,8 +161,7 @@ class MainController extends Controller
 
     $response = new JsonResponse();
     $response->setContent($json);
-    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
-
+    
     return $response;
   }
 
@@ -199,7 +191,6 @@ class MainController extends Controller
 
     $response = new JsonResponse();
     $response->setData($arrayPlayers);
-    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
 
     return $response;
   }
@@ -234,7 +225,6 @@ class MainController extends Controller
 
     $response = new JsonResponse();
     $response->setData($arrayResponse);
-    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
 
     return $response;
   }
@@ -265,7 +255,6 @@ class MainController extends Controller
 
     $response = new JsonResponse();
     $response->setData($arrayPlayers);
-    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
 
     return $response;
   }
@@ -287,7 +276,6 @@ class MainController extends Controller
 
     $response = new JsonResponse();
     $response->setContent($json);
-    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
 
     return $response;
   }
@@ -307,7 +295,6 @@ class MainController extends Controller
 
     $response = new JsonResponse();
     $response->setData($getProfileDataResponse);
-    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
 
     return $response;
   }
@@ -332,7 +319,6 @@ class MainController extends Controller
 
     $response = new JsonResponse();
     $response->setContent($json);
-    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
 
     return $response;
   }
@@ -350,7 +336,6 @@ class MainController extends Controller
     $statName = $request->query->get('statName');
 
     $response = new JsonResponse();
-    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
 
     if (empty($statName)) {
       $response->setContent('The GET parameter statName is mandatory and must be a numeric.');
@@ -378,7 +363,6 @@ class MainController extends Controller
             ->updateProfileData($steamId);
 
     $response = new JsonResponse();
-    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
     $response->setContent($updateProfileDataResponse);
     return $response;
   }
@@ -397,7 +381,6 @@ class MainController extends Controller
             ->updateStatsData($steamId);
 
     $response = new JsonResponse();
-    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
     $response->setData($updateStatsDataResponse);
 
     return $response;
@@ -417,7 +400,6 @@ class MainController extends Controller
             ->updateTimePlayed($steamId);
 
     $response = new JsonResponse();
-    $response->headers->set('Access-Control-Allow-Origin', $this->container->getParameter('front_end_url'));
     $response->setData($updateTimePlayedResponse);
 
     return $response;

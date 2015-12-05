@@ -2,3 +2,10 @@ services:
   kf2exp.steamrequestmanager:
     class: Kf2Exp\AppBundle\Services\SteamRequestManager\SteamRequestManager
     arguments: [ "@doctrine.orm.entity_manager", "%kernel.root_dir%", "%steam_api_key%", "%max_request%", "%player_cache_seconds%"]
+    
+  kf2exp.responselistener:
+    class: Kf2Exp\AppBundle\EventListener\ResponseListener
+    arguments: ["%front_end_url%"]
+    tags:
+      -  { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+  
