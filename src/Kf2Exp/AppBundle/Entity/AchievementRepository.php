@@ -12,13 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class AchievementRepository extends EntityRepository
 {
-  public function getAchievementsMapsList()
+  public function getAchievementsMapsDifficultyList()
   {
     $qb = $this->createQueryBuilder('a');
     $qb->select('a')
-            ->where('a.enabled = 1')
-            ->andWhere('a.achievementMap = 1')
-            ->orderBy('a.mapName', 'ASC');
+            ->where('a.map IS NOT NULL')
+            ->orderBy('a.map', 'ASC');
 
     $achievementMaps = $qb->getQuery()
             ->getResult();
@@ -26,40 +25,40 @@ class AchievementRepository extends EntityRepository
     $results = array();
 
     foreach ($achievementMaps as $achievementMap) {
-      if (array_key_exists($achievementMap->getMapName(), $results) == false) {
-        $results[$achievementMap->getMapName()] = array();
+      if (array_key_exists($achievementMap->getMap(), $results) == false) {
+        $results[$achievementMap->getMap()] = array();
       }
     }
 
     foreach ($achievementMaps as $achievementMap) {
-      $results[$achievementMap->getMapName()][$achievementMap->getDifficulty()] = $achievementMap->getAchievementName();
+      $results[$achievementMap->getMap()][$achievementMap->getDifficulty()] = $achievementMap->getName();
     }
 
     return $results;
   }
   
-  public function getAchievementsPerkDifficultyList()
+  public function getAchievementsPerksDifficultyList()
   {
     $qb = $this->createQueryBuilder('a');
     $qb->select('a')
-        ->where('a.enabled = 1')
-        ->andWhere('a.perk IS NOT NULL')
-        ->orderBy('a.perk');
+            ->where('a.perk IS NOT NULL')
+            ->orderBy('a.perk', 'ASC');
 
-    $achievementPerkDifficulties = $qb->getQuery()
-          ->getResult();
+    $achievementPerks = $qb->getQuery()
+            ->getResult();
 
     $results = array();
 
-    foreach ($achievementPerkDifficulties as $achievement) {
-      
-      if (empty($results[$achievement->getPerk()])) {
-        $results[$achievement->getPerk()] = array();
+    foreach ($achievementPerks as $achievementPerk) {
+      if (array_key_exists($achievementPerk->getPerk(), $results) == false) {
+        $results[$achievementPerk->getPerk()] = array();
       }
-
-      $results[$achievement->getPerk()][$achievement->getDifficulty()] = $achievement->getAchievementName();
     }
 
+    foreach ($achievementPerks as $achievementPerk) {
+      $results[$achievementPerk->getPerk()][$achievementPerk->getDifficulty()] = $achievementPerk->getName();
+    }
+    
     return $results;
   }
   
@@ -67,20 +66,18 @@ class AchievementRepository extends EntityRepository
   {
     $qb = $this->createQueryBuilder('a');
     $qb->select('a')
-            ->where('a.enabled = 1')
-            ->andWhere('a.achievementMap = 0')
-            ->orderBy('a.visibleAchievementName', 'ASC');
+            ->where('a.collectible IS NOT NULL')
+            ->orderBy('a.visibleName', 'ASC');
 
-    $achievementsClassic = $qb->getQuery()
+    $achievementPerks = $qb->getQuery()
             ->getResult();
 
     $results = array();
 
-    foreach ($achievementsClassic as $achievementClassic) {
-      $results[$achievementClassic->getAchievementName()] = $achievementClassic->getVisibleAchievementName();
+    foreach ($achievementPerks as $achievementPerk) {
+      $results[] = $achievementPerk->getName();
     }
-
+    
     return $results;
   }
-  
 }

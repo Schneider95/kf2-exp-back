@@ -81,7 +81,7 @@ class SteamRequestManager
     $listeAchievements = $repository->findAll();
 
     foreach ($listeAchievements as $a) {
-      $existingAchievements[] = $a->getAchievementName();
+      $existingAchievements[] = $a->getName();
     }
 
     foreach ($json["playerstats"]["achievements"] as $a) {
@@ -92,8 +92,8 @@ class SteamRequestManager
 
     foreach ($achievementToAdd as $a) {
       $achievement = new Achievement();
-      $achievement->setAchievementName($a);
-      $achievement->setVisibleAchievementName($a);
+      $achievement->setName($a);
+      $achievement->setVisibleName($a);
 
       $this->em->persist($achievement);
       $this->em->flush();
@@ -391,28 +391,12 @@ class SteamRequestManager
     $repository = $this->em->getRepository('Kf2ExpAppBundle:Player');
     $player = $repository->findOneBySteamId($steamId);
 
-    $nbAchievementsMaps = 0;
-
-    $maps = $this->em->getRepository('Kf2ExpAppBundle:Achievement')
-            ->getAchievementsMapsList();
-
     foreach ($json["playerstats"]["achievements"] as $playerAchievementsJson) {
-
-      foreach ($maps as $map) {
-
-        foreach ($map as $difficultyKey => $difficultyValue) {
-
-          if ($playerAchievementsJson['name'] == $difficultyValue) {
-            $nbAchievementsMaps++;
-          }
-        }
-      }
-
 
       $achievementRepository = $this->em
               ->getRepository('Kf2ExpAppBundle:Achievement');
       $achievement = $achievementRepository
-              ->findOneByAchievementName($playerAchievementsJson['name']);
+              ->findOneByName($playerAchievementsJson['name']);
 
       $playerAchievementRepository = $this->em
               ->getRepository('Kf2ExpAppBundle:PlayerAchievement');
@@ -439,8 +423,6 @@ class SteamRequestManager
       $this->em->flush();
     }
 
-    $player->setNbAchievements(count($json["playerstats"]["achievements"]));
-    $player->setNbAchievementsMaps($nbAchievementsMaps);
     $this->em->persist($player);
     $this->em->flush();
   }
@@ -535,8 +517,6 @@ class SteamRequestManager
     $player->setTimePlayed(0);
     $player->setIsRegistering(1);
     $player->setIsCheater(0);
-    $player->setNbAchievements(0);
-    $player->setNbAchievementsMaps(0);
 
     if (!empty($jsonPlayer["loccountrycode"])) {
       $repository = $this->em

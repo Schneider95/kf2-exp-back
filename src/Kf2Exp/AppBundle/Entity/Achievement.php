@@ -24,23 +24,30 @@ class Achievement{
   /**
    * @var string
    *
-   * @ORM\Column(name="achievementName", type="string", length=255)
+   * @ORM\Column(name="name", type="string", length=255)
    */
-  private $achievementName;
+  private $name;
 
   /**
    * @var string
    *
-   * @ORM\Column(name="visibleAchievementName", type="string", length=255)
+   * @ORM\Column(name="visibleName", type="string", length=255)
    */
-  private $visibleAchievementName;
+  private $visibleName;
 
+  /**
+   * @var collectible
+   *
+   * @ORM\Column(name="collectible", type="boolean", nullable=true)
+   */
+  private $collectible;
+  
   /**
    * @var string
    *
-   * @ORM\Column(name="mapName", type="string", length=255, nullable=true)
+   * @ORM\Column(name="map", type="string", length=255, nullable=true)
    */
-  private $mapName;
+  private $map;
 
   /**
    * @var string
@@ -57,20 +64,6 @@ class Achievement{
   private $difficulty;
 
   /**
-   * @var boolean
-   *
-   * @ORM\Column(name="achievementMap", type="boolean", nullable=true)
-   */
-  private $achievementMap;
-  
-  /**
-   * @var boolean
-   *
-   * @ORM\Column(name="enabled", type="boolean", nullable=true)
-   */
-  private $enabled;
-
-  /**
    * Get id
    *
    * @return integer 
@@ -79,138 +72,96 @@ class Achievement{
     return $this->id;
   }
 
-  /**
-   * Set achievementName
-   *
-   * @param string $achievementName
-   * @return Achievement
-   */
-  public function setAchievementName($achievementName) {
-    $this->achievementName = $achievementName;
-
-    return $this;
-  }
-
-  /**
-   * Get achievementName
-   *
-   * @return string 
-   */
-  public function getAchievementName() {
-    return $this->achievementName;
-  }
-
-  /**
-   * Set visibleAchievementName
-   *
-   * @param string $visibleAchievementName
-   * @return Achievement
-   */
-  public function setVisibleAchievementName($visibleAchievementName) {
-    $this->visibleAchievementName = $visibleAchievementName;
-
-    return $this;
-  }
-
-  /**
-   * Get visibleAchievementName
-   *
-   * @return string 
-   */
-  public function getVisibleAchievementName() {
-    return $this->visibleAchievementName;
-  }
-
-  /**
-   * Get mapName
-   *
-   * @return string 
-   */
-  public function getMapName() {
-    return $this->mapName;
-  }
-
-  /**
-   * Get difficulty
-   *
-   * @return string 
-   */
-  public function getDifficulty() {
-    return $this->difficulty;
-  }
-
-
     /**
-     * Set mapName
+     * Set name
      *
-     * @param string $mapName
+     * @param string $name
      * @return Achievement
      */
-    public function setMapName($mapName)
+    public function setName($name)
     {
-        $this->mapName = $mapName;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Set difficulty
+     * Get name
      *
-     * @param string $difficulty
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set visibleName
+     *
+     * @param string $visibleName
      * @return Achievement
      */
-    public function setDifficulty($difficulty)
+    public function setVisibleName($visibleName)
     {
-        $this->difficulty = $difficulty;
+        $this->visibleName = $visibleName;
 
         return $this;
     }
 
     /**
-     * Set achievementMap
+     * Get visibleName
      *
-     * @param boolean $achievementMap
+     * @return string 
+     */
+    public function getVisibleName()
+    {
+        return $this->visibleName;
+    }
+
+    /**
+     * Set collectible
+     *
+     * @param boolean $collectible
      * @return Achievement
      */
-    public function setAchievementMap($achievementMap)
+    public function setCollectible($collectible)
     {
-        $this->achievementMap = $achievementMap;
+        $this->collectible = $collectible;
 
         return $this;
     }
 
     /**
-     * Get achievementMap
+     * Get collectible
      *
      * @return boolean 
      */
-    public function getAchievementMap()
+    public function getCollectible()
     {
-        return $this->achievementMap;
+        return $this->collectible;
     }
 
-
     /**
-     * Set enabled
+     * Set map
      *
-     * @param boolean $enabled
+     * @param string $map
      * @return Achievement
      */
-    public function setEnabled($enabled)
+    public function setMap($map)
     {
-        $this->enabled = $enabled;
+        $this->map = $map;
 
         return $this;
     }
 
     /**
-     * Get enabled
+     * Get map
      *
-     * @return boolean 
+     * @return string 
      */
-    public function getEnabled()
+    public function getMap()
     {
-        return $this->enabled;
+        return $this->map;
     }
 
     /**
@@ -234,5 +185,28 @@ class Achievement{
     public function getPerk()
     {
         return $this->perk;
+    }
+
+    /**
+     * Set difficulty
+     *
+     * @param string $difficulty
+     * @return Achievement
+     */
+    public function setDifficulty($difficulty)
+    {
+        $this->difficulty = $difficulty;
+
+        return $this;
+    }
+
+    /**
+     * Get difficulty
+     *
+     * @return string 
+     */
+    public function getDifficulty()
+    {
+        return $this->difficulty;
     }
 }

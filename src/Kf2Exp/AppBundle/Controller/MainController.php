@@ -72,55 +72,15 @@ class MainController extends Controller
   }
 
   /**
-   * @Route("/getAchievementsClassicList")
+   * @Route("/getAchievementsList")
    * @Method("GET")
    */
-  public function getAchievementsClassicListAction()
+  public function getAchievementsListAction()
   {
     $em = $this->getDoctrine()->getManager();
 
     $stats = $em->getRepository('Kf2ExpAppBundle:Achievement')
-            ->getAchievementsClassicList();
-
-    $serializer = $this->container->get('serializer');
-    $json = $serializer->serialize($stats, 'json');
-
-    $response = new JsonResponse();
-    $response->setContent($json);
-
-    return $response;
-  }
-  
-  /**
-   * @Route("/getAchievementsMapsList")
-   * @Method("GET")
-   */
-  public function getAchievementsMapsListAction()
-  {
-    $em = $this->getDoctrine()->getManager();
-
-    $stats = $em->getRepository('Kf2ExpAppBundle:Achievement')
-            ->getAchievementsMapsList();
-
-    $serializer = $this->container->get('serializer');
-    $json = $serializer->serialize($stats, 'json');
-
-    $response = new JsonResponse();
-    $response->setContent($json);
-
-    return $response;
-  }
-  
-  /**
-   * @Route("/getAchievementsPerkDifficultyList")
-   * @Method("GET")
-   */
-  public function getAchievementsPerkDifficultyListAction()
-  {
-    $em = $this->getDoctrine()->getManager();
-
-    $stats = $em->getRepository('Kf2ExpAppBundle:Achievement')
-            ->getAchievementsPerkDifficultyList();
+        ->findAll();
 
     $serializer = $this->container->get('serializer');
     $json = $serializer->serialize($stats, 'json');

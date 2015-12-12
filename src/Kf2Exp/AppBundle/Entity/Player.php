@@ -112,16 +112,6 @@ class Player{
   private $lastFriendCheckTime;
 
   /**
-   * @ORM\Column(type="integer", length=3)
-   */
-  private $nbAchievements;
-
-  /**
-   * @ORM\Column(type="integer", length=3)
-   */
-  private $nbAchievementsMaps;
-
-  /**
    * @ORM\ManyToOne(targetEntity="Kf2Exp\AppBundle\Entity\Country")
    */
   private $country;
@@ -374,15 +364,6 @@ class Player{
     return $this->nbAchievements;
   }
 
-  public function setNbAchievementsMaps($nbAchievementsMaps) {
-    $this->nbAchievementsMaps = $nbAchievementsMaps;
-    return $this;
-  }
-
-  public function getNbAchievementsMaps() {
-    return $this->nbAchievementsMaps;
-  }
-
   public function setCity(City $city) {
     $this->city = $city;
   }
@@ -424,4 +405,26 @@ class Player{
     return $this->playerAchievements;
   }
 
+  /**
+   * Add playerStats
+   *
+   * @param \Kf2Exp\AppBundle\Entity\PlayerStat $playerStats
+   * @return Player
+   */
+  public function addPlayerStat(\Kf2Exp\AppBundle\Entity\PlayerStat $playerStats)
+  {
+      $this->playerStats[] = $playerStats;
+
+      return $this;
+  }
+
+  /**
+   * Remove playerStats
+   *
+   * @param \Kf2Exp\AppBundle\Entity\PlayerStat $playerStats
+   */
+  public function removePlayerStat(\Kf2Exp\AppBundle\Entity\PlayerStat $playerStats)
+  {
+      $this->playerStats->removeElement($playerStats);
+  }
 }
