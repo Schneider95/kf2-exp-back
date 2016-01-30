@@ -4,32 +4,29 @@ namespace Kf2Exp\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 class MainController extends Controller
 {
-
-  /**
+    /**
    * @Route("/checkIfPlayerExistInDatabase")
    * @Method("GET")
    */
   public function checkIfPlayerExistInDatabaseAction(Request $request)
   {
+      $profileUrl = $request->query->get('profileUrl');
 
-    $profileUrl = $request->query->get('profileUrl');
-
-    $steamRequestManager = $this->container
+      $steamRequestManager = $this->container
             ->get('kf2exp.steamrequestmanager');
-    $checkIfPlayerExistInDatabaseResponse = $steamRequestManager
+      $checkIfPlayerExistInDatabaseResponse = $steamRequestManager
             ->checkIfPlayerExistInDatabase($profileUrl);
 
-    $response = new JsonResponse();
-    $response->setData($checkIfPlayerExistInDatabaseResponse);
+      $response = new JsonResponse();
+      $response->setData($checkIfPlayerExistInDatabaseResponse);
 
-    return $response;
+      return $response;
   }
 
   /**
@@ -38,18 +35,17 @@ class MainController extends Controller
    */
   public function checkIfPlayerExistOnSteamAction(Request $request)
   {
+      $profileUrl = $request->query->get('profileUrl');
 
-    $profileUrl = $request->query->get('profileUrl');
-
-    $steamRequestManager = $this->container
+      $steamRequestManager = $this->container
             ->get('kf2exp.steamrequestmanager');
-    $checkIfPlayerExistOnSteamResponse = $steamRequestManager
+      $checkIfPlayerExistOnSteamResponse = $steamRequestManager
             ->checkIfPlayerExistOnSteam($profileUrl);
 
-    $response = new JsonResponse();
-    $response->setData($checkIfPlayerExistOnSteamResponse);
+      $response = new JsonResponse();
+      $response->setData($checkIfPlayerExistOnSteamResponse);
 
-    return $response;
+      return $response;
   }
 
   /**
@@ -58,17 +54,17 @@ class MainController extends Controller
    */
   public function checkIfPlayerHaveGameAction(Request $request)
   {
-    $steamId = $request->query->get('steamId');
+      $steamId = $request->query->get('steamId');
 
-    $steamRequestManager = $this->container
+      $steamRequestManager = $this->container
             ->get('kf2exp.steamrequestmanager');
-    $checkIfPlayerHaveGameResponse = $steamRequestManager
+      $checkIfPlayerHaveGameResponse = $steamRequestManager
             ->checkIfPlayerHaveGame($steamId);
 
-    $response = new JsonResponse();
-    $response->setData($checkIfPlayerHaveGameResponse);
+      $response = new JsonResponse();
+      $response->setData($checkIfPlayerHaveGameResponse);
 
-    return $response;
+      return $response;
   }
 
   /**
@@ -77,18 +73,18 @@ class MainController extends Controller
    */
   public function getAchievementsListAction()
   {
-    $em = $this->getDoctrine()->getManager();
+      $em = $this->getDoctrine()->getManager();
 
-    $stats = $em->getRepository('Kf2ExpAppBundle:Achievement')
+      $stats = $em->getRepository('Kf2ExpAppBundle:Achievement')
         ->findAll();
 
-    $serializer = $this->container->get('serializer');
-    $json = $serializer->serialize($stats, 'json');
+      $serializer = $this->container->get('serializer');
+      $json = $serializer->serialize($stats, 'json');
 
-    $response = new JsonResponse();
-    $response->setContent($json);
+      $response = new JsonResponse();
+      $response->setContent($json);
 
-    return $response;
+      return $response;
   }
 
   /**
@@ -97,12 +93,12 @@ class MainController extends Controller
    */
   public function getCitiesWithPlayersAction(Request $request)
   {
-    $content = file_get_contents('cities.json');
+      $content = file_get_contents('cities.json');
 
-    $response = new JsonResponse();
-    $response->setContent($content);
+      $response = new JsonResponse();
+      $response->setContent($content);
 
-    return $response;
+      return $response;
   }
 
   /**
@@ -111,18 +107,18 @@ class MainController extends Controller
    */
   public function getLatestNewsAction()
   {
-    $em = $this->getDoctrine()->getManager();
+      $em = $this->getDoctrine()->getManager();
 
-    $news = $em->getRepository('Kf2ExpAppBundle:SteamNews')
+      $news = $em->getRepository('Kf2ExpAppBundle:SteamNews')
             ->findLatestNews(3);
 
-    $serializer = $this->container->get('serializer');
-    $json = $serializer->serialize($news, 'json');
+      $serializer = $this->container->get('serializer');
+      $json = $serializer->serialize($news, 'json');
 
-    $response = new JsonResponse();
-    $response->setContent($json);
-    
-    return $response;
+      $response = new JsonResponse();
+      $response->setContent($json);
+
+      return $response;
   }
 
   /**
@@ -131,94 +127,90 @@ class MainController extends Controller
    */
   public function getLastUpdatedPlayersAction()
   {
+      $em = $this->getDoctrine()->getManager();
+      $repository = $em->getRepository('Kf2ExpAppBundle:Player');
 
-    $em = $this->getDoctrine()->getManager();
-    $repository = $em->getRepository('Kf2ExpAppBundle:Player');
+      $players = $repository->findBy(array(), array('lastUpdateTime' => 'desc'), 8, 0);
 
-    $players = $repository->findBy(array(), array('lastUpdateTime' => 'desc'), 8, 0);
+      $arrayPlayers = array();
 
-    $arrayPlayers = array();
-
-    foreach ($players as $p) {
-      $arrayPlayers[] = array('playerId' => $p->getId(),
+      foreach ($players as $p) {
+          $arrayPlayers[] = array('playerId' => $p->getId(),
           'steamId' => $p->getSteamId(),
           'steamName' => $p->getSteamName(),
           'steamAvatar' => $p->getAvatarMedium(),
           'lastUpdateTime' => $p->getLastUpdateTime()->format('d-m-Y H:i'),
-          'timePlayed' => $p->getTimePlayed()
+          'timePlayed' => $p->getTimePlayed(),
       );
-    }
+      }
 
-    $response = new JsonResponse();
-    $response->setData($arrayPlayers);
+      $response = new JsonResponse();
+      $response->setData($arrayPlayers);
 
-    return $response;
+      return $response;
   }
 
   /**
    * @Route("/getPlayersByCity")
    * @Method("GET")
    */
-  public function getPlayersByCityAction()
+  public function getPlayersByCityAction(Request $request)
   {
-    $em = $this->getDoctrine()->getManager();
+      $em = $this->getDoctrine()->getManager();
 
-    $request = $this->get('request');
-    $cityId = $request->query->get('cityId');
+      $cityId = $request->query->get('cityId');
 
-    $city = $em->getRepository('Kf2ExpAppBundle:City')->find($cityId);
+      $city = $em->getRepository('Kf2ExpAppBundle:City')->find($cityId);
 
-    $players = $em->getRepository('Kf2ExpAppBundle:Player')
+      $players = $em->getRepository('Kf2ExpAppBundle:Player')
             ->findBy(array('city' => $city));
 
-    $arrayResponse = array();
-    $arrayResponse['cityName'] = $city->getCityName();
+      $arrayResponse = array();
+      $arrayResponse['cityName'] = $city->getCityName();
 
-    $arrayPlayers = array();
+      $arrayPlayers = array();
 
-    foreach ($players as $p) {
-      $arrayPlayers[] = array('playerId' => $p->getId(),
-          'steamName' => $p->getSteamName());
-    }
+      foreach ($players as $p) {
+          $arrayPlayers[] = array('playerId' => $p->getId(),
+          'steamName' => $p->getSteamName(), );
+      }
 
-    $arrayResponse['players'] = $arrayPlayers;
+      $arrayResponse['players'] = $arrayPlayers;
 
-    $response = new JsonResponse();
-    $response->setData($arrayResponse);
+      $response = new JsonResponse();
+      $response->setData($arrayResponse);
 
-    return $response;
+      return $response;
   }
 
   /**
    * @Route("/getPlayersList")
    * @Method("GET")
    */
-  public function getPlayersListAction()
+  public function getPlayersListAction(Request $request)
   {
-    $em = $this->getDoctrine()->getManager();
+      $em = $this->getDoctrine()->getManager();
 
-    $request = $this->get('request');
-    $term = $request->query->get('term');
+      $term = $request->query->get('term');
 
-    $players = $em->getRepository('Kf2ExpAppBundle:Player')
+      $players = $em->getRepository('Kf2ExpAppBundle:Player')
             ->findAll();
 
-    $arrayPlayers = array();
+      $arrayPlayers = array();
 
-    foreach ($players as $p) {
-      $arrayPlayers[] = array(
+      foreach ($players as $p) {
+          $arrayPlayers[] = array(
           'playerId' => $p->getId(),
           'steamName' => utf8_encode($p->getSteamName()),
-          'steamNameLowercase' => utf8_encode(strtolower($p->getSteamName()))
+          'steamNameLowercase' => utf8_encode(strtolower($p->getSteamName())),
       );
-    }
+      }
 
-    $response = new JsonResponse();
-    $response->setData($arrayPlayers);
+      $response = new JsonResponse();
+      $response->setData($arrayPlayers);
 
-    return $response;
+      return $response;
   }
-
 
   /**
    * @Route("/getPlayer/{id}")
@@ -226,18 +218,18 @@ class MainController extends Controller
    */
   public function getPlayerAction($id)
   {
-    $em = $this->getDoctrine()->getManager();
+      $em = $this->getDoctrine()->getManager();
 
-    $player = $em->getRepository('Kf2ExpAppBundle:Player')
+      $player = $em->getRepository('Kf2ExpAppBundle:Player')
             ->find($id);
 
-    $serializer = $this->container->get('serializer');
-    $json = $serializer->serialize($player, 'json');
+      $serializer = $this->container->get('serializer');
+      $json = $serializer->serialize($player, 'json');
 
-    $response = new JsonResponse();
-    $response->setContent($json);
+      $response = new JsonResponse();
+      $response->setContent($json);
 
-    return $response;
+      return $response;
   }
 
   /**
@@ -246,67 +238,67 @@ class MainController extends Controller
    */
   public function getProfileDataAction(Request $request)
   {
-    $steamId = $request->query->get('steamId');
+      $steamId = $request->query->get('steamId');
 
-    $steamRequestManager = $this->container
+      $steamRequestManager = $this->container
             ->get('kf2exp.steamrequestmanager');
-    $getProfileDataResponse = $steamRequestManager
+      $getProfileDataResponse = $steamRequestManager
             ->getProfileData($steamId);
 
-    $response = new JsonResponse();
-    $response->setData($getProfileDataResponse);
+      $response = new JsonResponse();
+      $response->setData($getProfileDataResponse);
 
-    return $response;
+      return $response;
   }
-  
+
   /**
    * @Route("/getStatsList")
    * @Method("GET")
    */
   public function getStatsListAction()
   {
-    $em = $this->getDoctrine()->getManager();
+      $em = $this->getDoctrine()->getManager();
 
-    $stats = $em->getRepository('Kf2ExpAppBundle:Stat')
+      $stats = $em->getRepository('Kf2ExpAppBundle:Stat')
       ->findBy(array(
-        'enabled' => 1
+        'enabled' => 1,
       ), array(
-        'visibleStatName' => 'ASC'
+        'visibleStatName' => 'ASC',
       ));
 
-    $serializer = $this->container->get('serializer');
-    $json = $serializer->serialize($stats, 'json');
+      $serializer = $this->container->get('serializer');
+      $json = $serializer->serialize($stats, 'json');
 
-    $response = new JsonResponse();
-    $response->setContent($json);
+      $response = new JsonResponse();
+      $response->setContent($json);
 
-    return $response;
+      return $response;
   }
 
   /**
    * @Route("/getStatsRanking")
    * @Method("GET")
    */
-  public function getStatsRankingAction()
+  public function getStatsRankingAction(Request $request)
   {
+      $em = $this->getDoctrine()->getManager();
 
-    $em = $this->getDoctrine()->getManager();
-    $request = $this->get('request');
+      $statName = $request->query->get('statName');
 
-    $statName = $request->query->get('statName');
+      $response = new JsonResponse();
 
-    $response = new JsonResponse();
+      if (empty($statName)) {
+          $response->setContent('The GET parameter statName is mandatory and must be a numeric.');
 
-    if (empty($statName)) {
-      $response->setContent('The GET parameter statName is mandatory and must be a numeric.');
-      return $response;
-    }
+          return $response;
+      }
 
-    $playerStats = $em->getRepository('Kf2ExpAppBundle:PlayerStat')
+      $playerStats = $em->getRepository('Kf2ExpAppBundle:PlayerStat')
             ->getStatsRanking($statName);
 
-    $response->setData($playerStats);
-    return $response;
+      $response->setData($playerStats);
+
+      return $response;
   }
 
   /**
@@ -315,16 +307,17 @@ class MainController extends Controller
    */
   public function updateProfileDataAction(Request $request)
   {
-    $steamId = $request->query->get('steamId');
+      $steamId = $request->query->get('steamId');
 
-    $steamRequestManager = $this->container
+      $steamRequestManager = $this->container
             ->get('kf2exp.steamrequestmanager');
-    $updateProfileDataResponse = $steamRequestManager
+      $updateProfileDataResponse = $steamRequestManager
             ->updateProfileData($steamId);
 
-    $response = new JsonResponse();
-    $response->setContent($updateProfileDataResponse);
-    return $response;
+      $response = new JsonResponse();
+      $response->setContent($updateProfileDataResponse);
+
+      return $response;
   }
 
   /**
@@ -333,17 +326,17 @@ class MainController extends Controller
    */
   public function updateStatsDataAction(Request $request)
   {
-    $steamId = $request->query->get('steamId');
+      $steamId = $request->query->get('steamId');
 
-    $steamRequestManager = $this->container
+      $steamRequestManager = $this->container
             ->get('kf2exp.steamrequestmanager');
-    $updateStatsDataResponse = $steamRequestManager
+      $updateStatsDataResponse = $steamRequestManager
             ->updateStatsData($steamId);
 
-    $response = new JsonResponse();
-    $response->setData($updateStatsDataResponse);
+      $response = new JsonResponse();
+      $response->setData($updateStatsDataResponse);
 
-    return $response;
+      return $response;
   }
 
   /**
@@ -352,17 +345,16 @@ class MainController extends Controller
    */
   public function updateTimePlayedAction(Request $request)
   {
-    $steamId = $request->query->get('steamId');
+      $steamId = $request->query->get('steamId');
 
-    $steamRequestManager = $this->container
+      $steamRequestManager = $this->container
             ->get('kf2exp.steamrequestmanager');
-    $updateTimePlayedResponse = $steamRequestManager
+      $updateTimePlayedResponse = $steamRequestManager
             ->updateTimePlayed($steamId);
 
-    $response = new JsonResponse();
-    $response->setData($updateTimePlayedResponse);
+      $response = new JsonResponse();
+      $response->setData($updateTimePlayedResponse);
 
-    return $response;
+      return $response;
   }
-
 }
