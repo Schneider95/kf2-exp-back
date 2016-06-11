@@ -5,15 +5,15 @@ namespace Kf2Exp\AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Achievement
+ * Achievement.
  *
  * @ORM\Table("Achievements")
  * @ORM\Entity(repositoryClass="Kf2Exp\AppBundle\Entity\AchievementRepository")
  */
-class Achievement{
-
-  /**
-   * @var integer
+class Achievement
+{
+    /**
+   * @var int
    *
    * @ORM\Column(name="id", type="integer")
    * @ORM\Id
@@ -36,12 +36,12 @@ class Achievement{
   private $visibleName;
 
   /**
-   * @var collectible
+   * @var classic
    *
-   * @ORM\Column(name="collectible", type="boolean", nullable=true)
+   * @ORM\Column(name="classic", type="boolean", nullable=true)
    */
-  private $collectible;
-  
+  private $classic;
+
   /**
    * @var string
    *
@@ -55,7 +55,7 @@ class Achievement{
    * @ORM\Column(name="perk", type="string", nullable=true)
    */
   private $perk;
-  
+
   /**
    * @var string
    *
@@ -64,18 +64,20 @@ class Achievement{
   private $difficulty;
 
   /**
-   * Get id
+   * Get id.
    *
-   * @return integer 
+   * @return int 
    */
-  public function getId() {
-    return $this->id;
+  public function getId()
+  {
+      return $this->id;
   }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return Achievement
      */
     public function setName($name)
@@ -86,9 +88,9 @@ class Achievement{
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -96,9 +98,10 @@ class Achievement{
     }
 
     /**
-     * Set visibleName
+     * Set visibleName.
      *
      * @param string $visibleName
+     *
      * @return Achievement
      */
     public function setVisibleName($visibleName)
@@ -109,9 +112,9 @@ class Achievement{
     }
 
     /**
-     * Get visibleName
+     * Get visibleName.
      *
-     * @return string 
+     * @return string
      */
     public function getVisibleName()
     {
@@ -119,32 +122,10 @@ class Achievement{
     }
 
     /**
-     * Set collectible
-     *
-     * @param boolean $collectible
-     * @return Achievement
-     */
-    public function setCollectible($collectible)
-    {
-        $this->collectible = $collectible;
-
-        return $this;
-    }
-
-    /**
-     * Get collectible
-     *
-     * @return boolean 
-     */
-    public function getCollectible()
-    {
-        return $this->collectible;
-    }
-
-    /**
-     * Set map
+     * Set map.
      *
      * @param string $map
+     *
      * @return Achievement
      */
     public function setMap($map)
@@ -155,9 +136,9 @@ class Achievement{
     }
 
     /**
-     * Get map
+     * Get map.
      *
-     * @return string 
+     * @return string
      */
     public function getMap()
     {
@@ -165,9 +146,10 @@ class Achievement{
     }
 
     /**
-     * Set perk
+     * Set perk.
      *
      * @param string $perk
+     *
      * @return Achievement
      */
     public function setPerk($perk)
@@ -178,9 +160,9 @@ class Achievement{
     }
 
     /**
-     * Get perk
+     * Get perk.
      *
-     * @return string 
+     * @return string
      */
     public function getPerk()
     {
@@ -188,9 +170,10 @@ class Achievement{
     }
 
     /**
-     * Set difficulty
+     * Set difficulty.
      *
      * @param string $difficulty
+     *
      * @return Achievement
      */
     public function setDifficulty($difficulty)
@@ -201,12 +184,36 @@ class Achievement{
     }
 
     /**
-     * Get difficulty
+     * Get difficulty.
      *
-     * @return string 
+     * @return string
      */
     public function getDifficulty()
     {
         return $this->difficulty;
+    }
+
+    /**
+     * Set classic.
+     *
+     * @param bool $classic
+     *
+     * @return Achievement
+     */
+    public function setClassic($classic)
+    {
+        $this->classic = $classic;
+
+        return $this;
+    }
+
+    /**
+     * Get classic.
+     *
+     * @return bool
+     */
+    public function getClassic()
+    {
+        return $this->classic;
     }
 }
