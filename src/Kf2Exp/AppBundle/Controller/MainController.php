@@ -68,6 +68,26 @@ class MainController extends Controller
   }
 
   /**
+   * @Route("/getBuildsList")
+   * @Method("GET")
+   */
+  public function getBuildsListAction()
+  {
+      $em = $this->getDoctrine()->getManager();
+
+      $builds = $em->getRepository('Kf2ExpAppBundle:Build')
+        ->findAll();
+
+      $serializer = $this->container->get('serializer');
+      $json = $serializer->serialize($builds, 'json');
+
+      $response = new JsonResponse();
+      $response->setContent($json);
+
+      return $response;
+  }
+
+  /**
    * @Route("/getAchievementsList")
    * @Method("GET")
    */

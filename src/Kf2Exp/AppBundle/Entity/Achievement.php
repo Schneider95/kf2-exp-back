@@ -50,9 +50,8 @@ class Achievement
   private $map;
 
   /**
-   * @var string
-   *
-   * @ORM\Column(name="perk", type="string", nullable=true)
+   * @ORM\ManyToOne(targetEntity="Kf2Exp\AppBundle\Entity\Perk")
+   * @ORM\JoinColumn(nullable=true)
    */
   private $perk;
 
