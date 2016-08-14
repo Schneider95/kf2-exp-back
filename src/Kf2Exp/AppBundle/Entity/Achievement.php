@@ -43,9 +43,14 @@ class Achievement
   private $classic;
 
   /**
-   * @var string
-   *
-   * @ORM\Column(name="map", type="string", length=255, nullable=true)
+   * @ORM\ManyToOne(targetEntity="Kf2Exp\AppBundle\Entity\Difficulty")
+   * @ORM\JoinColumn(nullable=true)
+   */
+  private $difficulty;
+
+  /**
+   * @ORM\ManyToOne(targetEntity="Kf2Exp\AppBundle\Entity\Map")
+   * @ORM\JoinColumn(nullable=true)
    */
   private $map;
 
@@ -54,13 +59,6 @@ class Achievement
    * @ORM\JoinColumn(nullable=true)
    */
   private $perk;
-
-  /**
-   * @var string
-   *
-   * @ORM\Column(name="difficulty", type="string", length=255, nullable=true)
-   */
-  private $difficulty;
 
   /**
    * Get id.
