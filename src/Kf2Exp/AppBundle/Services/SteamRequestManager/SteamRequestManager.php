@@ -59,6 +59,7 @@ class SteamRequestManager
         $stat->setStatName($s);
         $stat->setVisibleStatName($s);
         $stat->setEnabled(0);
+        $stat->setIsXp(0);
 
         $this->em->persist($stat);
         $this->em->flush();
